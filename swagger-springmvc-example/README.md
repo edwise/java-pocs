@@ -1,1 +1,0 @@
-POC con Swagger
