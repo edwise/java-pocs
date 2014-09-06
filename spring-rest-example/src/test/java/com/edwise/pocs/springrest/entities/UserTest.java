@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class UserTest {
-    private static final long USER_ID_12 = 12l;
+    private static final long USER_ID_12 = 12L;
     private static final String NAME_GANDALF = "Gandalf";
     private static final int TYPE_1 = 1;
     private static final String PHONE_661534411 = "661534411";
@@ -21,8 +21,6 @@ public class UserTest {
 
         assertEquals(userTo, user);
     }
-
-    // TODO test hashcode and toString??
 
     private User createUser(Long id, String name, Integer type, String phone, String stringDate) {
         User user = new User();

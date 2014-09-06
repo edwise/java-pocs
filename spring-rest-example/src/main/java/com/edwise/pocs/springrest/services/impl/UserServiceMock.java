@@ -10,9 +10,9 @@ import java.util.List;
 
 @Service
 public class UserServiceMock implements UserService {
-    private static final long USER_ID_12 = 12l;
-    private static final long USER_ID_140 = 140l;
-    private static final long USER_ID_453321 = 45332l;
+    private static final long USER_ID_12 = 12L;
+    private static final long USER_ID_140 = 140L;
+    private static final long USER_ID_453321 = 45332L;
     private static final String NAME_GANDALF = "Gandalf";
     private static final String NAME_ARAGORN = "Aragorn";
     private static final String NAME_FRODO = "Frodo";
@@ -28,12 +28,12 @@ public class UserServiceMock implements UserService {
 
     @Override
     public User findById(Long id) {
-        return new User().
-                setId(id).
-                setName(NAME_GANDALF).
-                setPhone(PHONE_666554433).
-                setType(TYPE_1).
-                setBirthDate(LocalDate.parse(STRING_DATE_19110102));
+        return new User()
+                .setId(id)
+                .setName(NAME_GANDALF)
+                .setPhone(PHONE_666554433)
+                .setType(TYPE_1)
+                .setBirthDate(LocalDate.parse(STRING_DATE_19110102));
     }
 
     @Override
@@ -72,5 +72,6 @@ public class UserServiceMock implements UserService {
 
     @Override
     public void delete(Long id) {
+        // delete user by id
     }
 }

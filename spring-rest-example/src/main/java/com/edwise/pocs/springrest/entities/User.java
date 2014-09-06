@@ -9,7 +9,6 @@ public class User {
     private Integer type;
     private String phone;
 
-    // TODO serializers?
     private LocalDate birthDate;
 
     public Long getId() {
@@ -74,15 +73,14 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (!(object instanceof User)) {
             return false;
         }
-
-        User user = (User) o;
+        User user = (User) object;
 
         return !(birthDate != null ? !birthDate.equals(user.birthDate) : user.birthDate != null) &&
                 !(id != null ? !id.equals(user.id) : user.id != null) &&
