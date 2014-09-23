@@ -1,14 +1,25 @@
 package com.edwise.pocs.swagger.entities;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
 import org.joda.time.LocalDate;
 
+@ApiModel(value = "User entity", description = "Complete info of a entity user")
 public class User {
 
+    @ApiModelProperty(value = "The id of the user")
     private Long id;
+
+    @ApiModelProperty(value = "The name of the user", required = true)
     private String name;
+
+    @ApiModelProperty(value = "The type of the user", required = true)
     private Integer type;
+
+    @ApiModelProperty(value = "The phone of the user", required = false)
     private String phone;
 
+    @ApiModelProperty(value = "The birthDay of the user", required = false)
     private LocalDate birthDate;
 
     public Long getId() {
