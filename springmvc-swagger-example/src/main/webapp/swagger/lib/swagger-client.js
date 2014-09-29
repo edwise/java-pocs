@@ -187,6 +187,7 @@ var SwaggerClient = function(url, options) {
   this.isValid = false;
   this.info = null;
   this.useJQuery = false;
+  this.models = models;
 
   options = (options||{});
   if (url)
@@ -205,6 +206,8 @@ var SwaggerClient = function(url, options) {
 
   this.failure = options.failure != null ? options.failure : function() {};
   this.progress = options.progress != null ? options.progress : function() {};
+  this.spec = options.spec;
+
   if (options.success != null)
     this.build();
 }
@@ -241,14 +244,23 @@ SwaggerClient.prototype.build = function() {
         }
         else {
           self.isValid = false;
-          self.failure()
+          self.failure();
         }
       }
     }
   };
-  var e = (typeof window !== 'undefined' ? window : exports);
-  e.authorizations.apply(obj);
-  new SwaggerHttp().execute(obj);
+  if(this.spec) {
+    var self = this;
+    setTimeout(function() {
+      self.buildFromSpec(self.spec);
+    }, 10);
+  }
+  else {
+    var e = (typeof window !== 'undefined' ? window : exports);
+    var status = e.authorizations.apply(obj);
+    new SwaggerHttp().execute(obj);
+  }
+
   return this;
 };
 
@@ -288,8 +300,10 @@ SwaggerClient.prototype.buildFromSpec = function(response) {
     for(httpMethod in response.paths[path]) {
       var operation = response.paths[path][httpMethod];
       var tags = operation.tags;
-      if(typeof tags === undefined)
-        tags = [];
+      if(typeof tags === 'undefined') {
+        operation.tags = [ 'default' ];
+        tags = operation.tags;
+      }
       var operationId = this.idFromOp(path, httpMethod, operation);
       var operation = new Operation (
         this,
@@ -404,8 +418,8 @@ var Operation = function(parent, operationId, httpMethod, path, args, definition
   this.summary = args.summary || '';
   this.responses = (args.responses||{});
   this.type = null;
-
-  // this.authorizations = authorizations;
+  this.security = args.security;
+  this.description = args.description;
 
   var i;
   for(i = 0; i < this.parameters.length; i++) {
@@ -421,23 +435,27 @@ var Operation = function(parent, operationId, httpMethod, path, args, definition
   var model;
   var responses = this.responses;
 
-  if(responses['200'])
+  if(responses['200']) {
     response = responses['200'];
-  else if(responses['default'])
+    defaultResponseCode = '200';
+  }
+  else if(responses['default']) {
     response = responses['default'];
+    defaultResponseCode = 'default';
+  }
+
   if(response && response.schema) {
     var resolvedModel = this.resolveModel(response.schema, definitions);
     if(resolvedModel) {
       this.type = resolvedModel.name;
       this.responseSampleJSON = JSON.stringify(resolvedModel.getSampleValue(), null, 2);
       this.responseClassSignature = resolvedModel.getMockSignature();
+      delete responses[defaultResponseCode];
     }
     else {
       this.type = response.schema.type;
     }
   }
-  // else
-  //   this.responseClassSignature = '';
 
   if (errors.length > 0)
     this.resource.api.fail(errors);
@@ -472,9 +490,8 @@ Operation.prototype.getType = function (param) {
     str = 'string';
   else if(type === 'array') {
     isArray = true;
-    if(param.items) {
+    if(param.items)
       str = this.getType(param.items);
-    }
   }
   if(param['$ref'])
     str = param['$ref'];
@@ -485,7 +502,7 @@ Operation.prototype.getType = function (param) {
     if(ref) {
       ref = simpleRef(ref);
       if(isArray)
-        return [ref];
+        return [ ref ];
       else
         return ref;
     }
@@ -493,7 +510,7 @@ Operation.prototype.getType = function (param) {
       return this.getType(schema);
   }
   if(isArray)
-    return [str];
+    return [ str ];
   else
     return str;
 }
@@ -510,16 +527,6 @@ Operation.prototype.resolveModel = function (schema, definitions) {
     return new ArrayModel(schema);
   else
     return null;
-    // return new PrimitiveModel(schema);
-  // else
-
-  //   var ref = schema.items['$ref'];
-  //   if(ref.indexOf('#/definitions/') === 0)
-  //     ref = ref.substring('#/definitions/'.length);
-  //   return new Model('name', models[ref]);
-  // }
-  // else
-  //   return new Model('name', schema);
 }
 
 Operation.prototype.help = function() {
@@ -538,7 +545,6 @@ Operation.prototype.getSignature = function(type, models) {
     type = type[0];
   }
 
-  // listType = this.isListType(type);
   if(type === 'string')
     isPrimitive = true
   else
@@ -643,6 +649,8 @@ Operation.prototype.execute = function(arg1, arg2, arg3, arg4, parent) {
       else if (param.in === 'query') {
         if(querystring === '')
           querystring += '?';
+        else
+          querystring += '&';
         if(typeof param.collectionFormat !== 'undefined') {
           var qp = args[param.name];
           if(Array.isArray(qp))
@@ -664,7 +672,8 @@ Operation.prototype.execute = function(arg1, arg2, arg3, arg4, parent) {
 
   var obj = {
     url: url,
-    method: args.method,
+    method: this.method,
+    body: args.body,
     useJQuery: this.useJQuery,
     headers: headers,
     on: {
@@ -676,6 +685,7 @@ Operation.prototype.execute = function(arg1, arg2, arg3, arg4, parent) {
       }
     }
   };
+  var status = e.authorizations.apply(obj, this.operation.security);
   new SwaggerHttp().execute(obj);
 }
 
@@ -1309,7 +1319,12 @@ ShredHttpClient.prototype.execute = function(obj) {
     if(contentType != null) {
       if(contentType.indexOf("application/json") == 0 || contentType.indexOf("+json") > 0) {
         if(response.content.data && response.content.data !== "")
-          out.obj = JSON.parse(response.content.data);
+          try{
+            out.obj = JSON.parse(response.content.data);
+          }
+          catch (e) {
+            // unable to parse
+          }
         else
           out.obj = {}
       }
