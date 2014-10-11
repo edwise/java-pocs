@@ -5,7 +5,7 @@
     <groupId>com.edwise.springbootseries.war</groupId>
     <artifactId>springbootseries-war</artifactId>
     <version>0.1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>springbootseries-war</name>
     <url>http://maven.apache.org</url>
