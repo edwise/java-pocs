@@ -6,6 +6,5 @@ Proyectos de ejemplo de POCs varios:
 
 - springmvc-swagger-example: Documentar un servicio REST, con Swagger: http://anotherdayanotherbug.wordpress.com/2014/09/27/documentar-un-servicio-rest-con-swagger/
 
-- springboot-series-war: Spring Boot series: generar war para Tomcat: http://anotherdayanotherbug.wordpress
-.com/2014/10/13/spring-boot-series-generar-war-para-tomcat/
+- springboot-series-war: Spring Boot series: generar war para Tomcat: http://anotherdayanotherbug.wordpress.com/2014/10/13/spring-boot-series-generar-war-para-tomcat/
 
