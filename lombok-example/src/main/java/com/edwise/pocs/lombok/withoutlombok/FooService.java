@@ -11,8 +11,7 @@ public class FooService {
         String myFoo = null;
         if (id != null) {
             myFoo = "myFoo!";
-        }
-        else {
+        } else {
             log.error("id cannot be null!");
         }
 
