@@ -8,5 +8,5 @@ Proyectos de ejemplo de POCs varios:
 
 - springboot-series-war: Spring Boot series: generar war para Tomcat: http://anotherdayanotherbug.wordpress.com/2014/10/13/spring-boot-series-generar-war-para-tomcat/
 
-- lombok-example: POC con lombok: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate-a-saco/
+- lombok-example: POC con lombok: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate/
 
