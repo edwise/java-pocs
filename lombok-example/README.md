@@ -1,0 +1,1 @@
+POC con lombok, creado para el post: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate/
