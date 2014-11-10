@@ -9,5 +9,7 @@ http://anotherdayanotherbug.wordpress.com/2014/08/27/poc-con-spring-boot/
 
 - springboot-series-war: Spring Boot series: generar war para Tomcat: http://anotherdayanotherbug.wordpress.com/2014/10/13/spring-boot-series-generar-war-para-tomcat/
 
-- lombok-example: POC con lombok: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate/
+- lombok-example: Lombok, o como eliminar código boilerplate: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate/
+
+- jersey-rest-example: Implementar un servicio Rest con JAX-RS (Jersey): http://anotherdayanotherbug.wordpress.com/2014/11/11/implementar-un-servicio-rest-con-jax-rs-jersey/
 
