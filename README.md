@@ -10,5 +10,5 @@ Proyectos de ejemplo de POCs varios:
 
 - lombok-example: Lombok, o como eliminar código boilerplate: http://anotherdayanotherbug.wordpress.com/2014/10/27/lombok-o-como-eliminar-codigo-boilerplate/
 
-- jersey-rest-example: Implementar un servicio Rest con JAX-RS (Jersey): http://anotherdayanotherbug.wordpress.com/2014/11/11/implementar-un-servicio-rest-con-jax-rs-jersey/
+- jersey-rest-example: Implementar un servicio Rest con JAX-RS (Jersey): http://anotherdayanotherbug.wordpress.com/2014/11/10/implementar-un-servicio-rest-con-jax-rs-jersey/
 
