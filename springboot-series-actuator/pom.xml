@@ -5,7 +5,7 @@
 
     <groupId>com.edwise.springbootseries.actuator</groupId>
     <artifactId>springbootseries-actuator</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
 
     <name>springbootseries-actuator</name>
