@@ -13,3 +13,5 @@ http://anotherdayanotherbug.wordpress.com/2014/08/27/poc-con-spring-boot/
 
 - jersey-rest-example: Implementar un servicio Rest con JAX-RS (Jersey): http://anotherdayanotherbug.wordpress.com/2014/11/10/implementar-un-servicio-rest-con-jax-rs-jersey/
 
+- springboot-series-actuator: Spring Boot series: actuator, monitoriza tu aplicación: http://anotherdayanotherbug.wordpress.com/2014/11/21/spring-boot-series-actuator-monitoriza-tu-aplicacion/
+
