@@ -3,16 +3,16 @@ package com.edwise.pocs.springdata.impl;
 import com.edwise.pocs.springdata.entity.User;
 import com.edwise.pocs.springdata.service.UserService;
 import com.edwise.pocs.springdata.service.impl.UserServiceImpl;
-import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 public class UserServiceImplTest {
     private static final long USER_ID_12 = 12l;

@@ -1,7 +1,8 @@
 package com.edwise.pocs.springdata.entity;
 
-import org.joda.time.LocalDate;
 import org.junit.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 

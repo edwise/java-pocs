@@ -2,9 +2,9 @@ package com.edwise.pocs.springdata.service.impl;
 
 import com.edwise.pocs.springdata.entity.User;
 import com.edwise.pocs.springdata.service.UserService;
-import org.joda.time.LocalDate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
