@@ -1,8 +1,7 @@
-package com.edwise.pocs.springdata.impl;
+package com.edwise.pocs.springdata.service.impl;
 
 import com.edwise.pocs.springdata.entity.User;
 import com.edwise.pocs.springdata.service.UserService;
-import com.edwise.pocs.springdata.service.impl.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
