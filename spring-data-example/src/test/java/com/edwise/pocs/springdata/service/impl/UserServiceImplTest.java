@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -17,7 +18,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -45,11 +50,8 @@ public class UserServiceImplTest {
     @InjectMocks
     private UserService userService = new UserServiceImpl();
 
-    // TODO improve the name of the tests
-    // TODO more tests for error cases, etc
-
     @Test
-    public void findById() {
+    public void findById_existsUser_returnUser() {
         when(userRepository.findOne(USER_ID_12)).thenReturn(
                 createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102));
 
@@ -61,7 +63,17 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void findAll() {
+    public void findById_notExistsUser_returnNoUser() {
+        when(userRepository.findOne(USER_ID_12)).thenReturn(null);
+
+        User user = userService.findById(USER_ID_12);
+
+        assertNull(user);
+        verify(userRepository).findOne(USER_ID_12);
+    }
+
+    @Test
+    public void findAll_existUsers_returnSomeUsers() {
         when(userRepository.findAll()).thenReturn(Arrays.asList(
                 createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102),
                 createUser(USER_ID_23, NAME_ARAGORN, TYPE_2, PHONE_661534410, STRING_DATE_19511212),
@@ -76,7 +88,18 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void save() {
+    public void findAll_notExistUsers_returnEmptyList() {
+        when(userRepository.findAll()).thenReturn(Arrays.asList());
+
+        List<User> users = userService.findAll();
+
+        assertNotNull(users);
+        assertThat(users, hasSize(0));
+        verify(userRepository).findAll();
+    }
+
+    @Test
+    public void save_newOrExistingUser_returnUserSavedOrUpdated() {
         User newUser = createUser(null, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
         User userReturned = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
         when(userRepository.save(newUser)).thenReturn(userReturned);
@@ -90,11 +113,20 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void delete() {
+    public void delete_existsUser_deleteUser() {
+        doNothing().when(userRepository).delete(anyLong());
+
         userService.delete(USER_ID_12);
+
+        verify(userRepository).delete(anyLong());
     }
 
-    // TODO tests for more use cases: delete not exists...
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void delete_notExistsUser_throwsException() {
+        doThrow(new EmptyResultDataAccessException("Entity not exists!", 1)).when(userRepository).delete(anyLong());
+
+        userService.delete(USER_ID_12);
+    }
 
     private User createUser(Long id, String name, int type, String phone, String stringDate) {
         User user = new User();

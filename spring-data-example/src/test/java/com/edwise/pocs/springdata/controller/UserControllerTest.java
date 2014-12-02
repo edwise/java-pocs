@@ -146,7 +146,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void deleteUser() {
+    public void deleteUser_existsUser_deleteTheUser() {
         when(userService.existsUser(USER_ID_12)).thenReturn(Boolean.TRUE);
         doNothing().when(userService).delete(anyLong());
 
@@ -154,6 +154,16 @@ public class UserControllerTest {
 
         verify(userService).existsUser(USER_ID_12);
         verify(userService).delete(USER_ID_12);
+    }
+
+    @Test
+    public void deleteUser_notExistsUser_doNothing() {
+        when(userService.existsUser(USER_ID_12)).thenReturn(Boolean.FALSE);
+
+        userController.deleteUser(USER_ID_12);
+
+        verify(userService).existsUser(USER_ID_12);
+        verify(userService, never()).delete(anyLong());
     }
 
     private User createUser(Long id, String name, Integer type, String phone, String stringDate) {
