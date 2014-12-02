@@ -46,17 +46,27 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void updateUser(@PathVariable long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable long userId, @RequestBody User user) {
         User userOld = userService.findById(userId);
+        ResponseEntity<User> response;
         if (userOld != null) {
-            userService.update(userOld.copyFrom(user));
+            User userUpdated = userService.save(userOld.copyFrom(user));
+            response = new ResponseEntity<>(userUpdated, HttpStatus.CREATED);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return response;
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable long userId) {
-        userService.delete(userId);
+    public ResponseEntity<User> deleteUser(@PathVariable long userId) {
+        ResponseEntity<User> response;
+        if (userService.existsUser(userId)) {
+            userService.delete(userId);
+            response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
     }
 }

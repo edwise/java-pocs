@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User user) {
-        return userRepository.save(user);
+    public void delete(Long id) {
+        userRepository.delete(id);
     }
 
     @Override
-    public void delete(Long id) {
-        userRepository.delete(id);
+    public boolean existsUser(Long id) {
+        return userRepository.exists(id);
     }
 }

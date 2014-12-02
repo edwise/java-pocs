@@ -13,13 +13,13 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
@@ -77,33 +77,24 @@ public class UserServiceImplTest {
 
     @Test
     public void save() {
-        // TODO fix this test, with when and verify
-        User user = userService.save(
-                createUser(null, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102)
-        );
+        User newUser = createUser(null, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        User userReturned = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        when(userRepository.save(newUser)).thenReturn(userReturned);
 
-        assertNotNull(user);
-        assertNotNull(user.getId());
-    }
+        User userSaved = userService.save(newUser);
 
-    @Test
-    public void update() {
-        User user = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
-        when(userRepository.save(user)).then(returnsFirstArg());
-
-        User userUpdated = userService.update(
-                createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102)
-        );
-
-        assertNotNull(userUpdated);
-        assertThat(userUpdated.getId(), is(USER_ID_12));
-        verify(userRepository).save(user);
+        assertNotNull(userSaved);
+        assertNotNull(userSaved.getId());
+        assertThat(userSaved, equalTo(userReturned));
+        verify(userRepository).save(newUser);
     }
 
     @Test
     public void delete() {
         userService.delete(USER_ID_12);
     }
+
+    // TODO tests for more use cases: delete not exists...
 
     private User createUser(Long id, String name, int type, String phone, String stringDate) {
         User user = new User();

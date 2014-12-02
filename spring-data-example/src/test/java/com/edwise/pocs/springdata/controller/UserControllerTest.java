@@ -46,6 +46,8 @@ public class UserControllerTest {
     private static final String STRING_DATE_19230716 = "1923-07-16";
     private static final String STRING_DATE_19511124 = "1951-11-24";
 
+    // TODO tests for more use cases: delete not exists...
+
     @Mock
     private UserService userService;
 
@@ -124,12 +126,12 @@ public class UserControllerTest {
         User userOld = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
         User user = createUser(USER_ID_12, null, null, PHONE_666222211, null);
         when(userService.findById(USER_ID_12)).thenReturn(userOld);
-        when(userService.update(any(User.class))).then(returnsFirstArg());
+        when(userService.save(any(User.class))).then(returnsFirstArg());
 
         userController.updateUser(USER_ID_12, user);
 
         verify(userService).findById(USER_ID_12);
-        verify(userService).update(userOld.setPhone(PHONE_666222211));
+        verify(userService).save(userOld.setPhone(PHONE_666222211));
     }
 
     @Test
@@ -140,15 +142,17 @@ public class UserControllerTest {
         userController.updateUser(USER_ID_12, user);
 
         verify(userService).findById(USER_ID_12);
-        verify(userService, never()).update(any(User.class));
+        verify(userService, never()).save(any(User.class));
     }
 
     @Test
     public void deleteUser() {
+        when(userService.existsUser(USER_ID_12)).thenReturn(Boolean.TRUE);
         doNothing().when(userService).delete(anyLong());
 
         userController.deleteUser(USER_ID_12);
 
+        verify(userService).existsUser(USER_ID_12);
         verify(userService).delete(USER_ID_12);
     }
 
