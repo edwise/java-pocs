@@ -4,11 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "User.findByNameIgnoreCase", query = "SELECT u FROM User u WHERE LOWER(u.name) = LOWER(?1)")
 public class User {
 
     @Id
