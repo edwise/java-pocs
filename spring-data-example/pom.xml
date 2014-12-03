@@ -4,7 +4,7 @@
 
     <groupId>com.edwise.pocs.springdata</groupId>
     <artifactId>spring-data-example</artifactId>
-    <version>0.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>spring-data-example</name>
