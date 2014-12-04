@@ -46,8 +46,6 @@ public class UserControllerTest {
     private static final String STRING_DATE_19230716 = "1923-07-16";
     private static final String STRING_DATE_19511124 = "1951-11-24";
 
-    // TODO tests for more use cases: delete not exists...
-
     @Mock
     private UserService userService;
 
