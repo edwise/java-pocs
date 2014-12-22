@@ -15,6 +15,6 @@ http://anotherdayanotherbug.wordpress.com/2014/08/27/poc-con-spring-boot/
 
 - springboot-series-actuator: Spring Boot series: actuator, monitoriza tu aplicación: http://anotherdayanotherbug.wordpress.com/2014/11/21/spring-boot-series-actuator-monitoriza-tu-aplicacion/
 
-- springboot-data-example: Implementar la capa de base de datos con Spring Data: http://anotherdayanotherbug.wordpress.com/2014/12/05/implementar-la-capa-de-base-de-datos-con-spring-data/
+- spring-data-example: Implementar la capa de base de datos con Spring Data: http://anotherdayanotherbug.wordpress.com/2014/12/05/implementar-la-capa-de-base-de-datos-con-spring-data/
 
 
