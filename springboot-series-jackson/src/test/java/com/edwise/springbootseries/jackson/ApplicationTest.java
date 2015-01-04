@@ -13,5 +13,6 @@ public class ApplicationTest {
 
     @Test
     public void contextLoads() {
+        // TODO test objectMapper??
     }
 }

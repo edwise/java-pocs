@@ -1,7 +1,6 @@
 package com.edwise.springbootseries.jackson.controller;
 
 import com.edwise.springbootseries.jackson.entity.Info;
-import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -12,11 +11,16 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import org.joda.time.LocalDateTime;
+//import java.time.LocalDateTime;
+
+
 public class InfoControllerTest {
 
     private static final long INFO_ID_1234 = 1234;
     private static final String INFO_TEST = "Test 1234";
     private static final LocalDateTime INFO_CREATION_DATE_TIME = new LocalDateTime(2011, 12, 9, 19, 15, 20);
+//    private static final LocalDateTime INFO_CREATION_DATE_TIME = LocalDateTime.of(2011, 12, 9, 19, 15, 20);
 
     private InfoController infoController;
 
