@@ -17,4 +17,6 @@ http://anotherdayanotherbug.wordpress.com/2014/08/27/poc-con-spring-boot/
 
 - spring-data-example: Implementar la capa de base de datos con Spring Data: http://anotherdayanotherbug.wordpress.com/2014/12/05/implementar-la-capa-de-base-de-datos-con-spring-data/
 
+- springboot-series-jackon: Spring Boot series: autoconfiguración de Jackson: http://anotherdayanotherbug.wordpress.com/2015/01/07/spring-boot-series-autoconfiguracion-de-jackson/
+
 

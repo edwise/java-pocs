@@ -1,0 +1,1 @@
+Ejemplo de configuración de Jackson en un proyecto Spring Boot, creado para el segundo post de la serie Spring Boot: http://anotherdayanotherbug.wordpress.com/2015/01/07/spring-boot-series-autoconfiguracion-de-jackson/
