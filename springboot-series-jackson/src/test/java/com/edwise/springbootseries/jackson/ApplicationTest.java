@@ -30,7 +30,7 @@ public class ApplicationTest {
         //LocalDateTime date = LocalDateTime.of(2011, 12, 9, 19, 15, 20);
 
         String result = objectMapper.writeValueAsString(date);
-        assertThat(result, containsString("2011-12-09T19:15:20.000"));
+        assertThat(result, containsString("2011-12-09T19:15:20"));
     }
 
     @Test
