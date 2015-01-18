@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class DBConnector {
-    private final static Logger log = LoggerFactory.getLogger(DBConnector.class);
+    private static final Logger log = LoggerFactory.getLogger(DBConnector.class);
 
     private static final String URL = "jdbc:h2:mem:pocjooq;" + "INIT=RUNSCRIPT FROM 'classpath:populate_db.sql'";
     private static final String USERNAME = "sa";
@@ -31,7 +31,6 @@ public final class DBConnector {
             }
         } catch (SQLException e) {
             log.error("Error al comprobar si está cerrada la conexión: {}", e);
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -44,7 +43,6 @@ public final class DBConnector {
             log.debug("Conexión cerrada.");
         } catch (SQLException e) {
             log.error("Error al cerrar la conexión: {}", e);
-            e.printStackTrace();
         }
     }
 
@@ -54,7 +52,6 @@ public final class DBConnector {
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             log.error("Error al crear la conexión: {}", e);
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         log.debug("Conexion creada: {}", conn);

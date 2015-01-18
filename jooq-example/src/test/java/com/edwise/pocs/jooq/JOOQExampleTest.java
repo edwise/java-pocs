@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JOOQExampleTest {
-    private final static Logger log = LoggerFactory.getLogger(JOOQExampleTest.class);
+    private static final Logger log = LoggerFactory.getLogger(JOOQExampleTest.class);
 
     private DSLContext jooqDSL;
 
