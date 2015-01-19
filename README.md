@@ -19,5 +19,4 @@ http://anotherdayanotherbug.wordpress.com/2014/08/27/poc-con-spring-boot/
 
 - springboot-series-jackon: Spring Boot series: autoconfiguración de Jackson: http://anotherdayanotherbug.wordpress.com/2015/01/07/spring-boot-series-autoconfiguracion-de-jackson/
 
-- jooq-exmaple: Como configurar jOOQ en un proyecto maven: https://anotherdayanotherbug.wordpress
-.com/2015/01/20/como-configurar-jooq-en-un-proyecto-maven/
+- jooq-exmaple: Como configurar jOOQ en un proyecto maven: https://anotherdayanotherbug.wordpress.com/2015/01/20/como-configurar-jooq-en-un-proyecto-maven/
