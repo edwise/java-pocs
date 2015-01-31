@@ -1,18 +1,14 @@
 package com.edwise.springbootseries.integrationtests;
 
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 public class ApplicationTest {
 
-    @Before
-    public void setUp() {
-
-    }
-
     @Test
+    @Ignore
     public void testApplication() {
         fail("Not yet implemented");
     }
