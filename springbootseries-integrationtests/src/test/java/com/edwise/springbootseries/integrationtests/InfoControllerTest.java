@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InfoControllerTest {
-    private static final long INFO_ID_1234 = 1234;
+    private static final Long INFO_ID_1234 = 1234l;
     private static final String INFO_TEST = "Test 1234";
     private static final LocalDateTime INFO_CREATION_DATE_TIME = LocalDateTime.of(2011, 12, 9, 19, 15, 20);
 

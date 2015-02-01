@@ -27,8 +27,8 @@ public class InfoController {
     @RequestMapping(method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Info> createInfo(@RequestBody Info info) {
-        Info newInfo = infoService.save(info);
-        return new ResponseEntity<>(newInfo, HttpStatus.CREATED);
+        Info infoCreated = infoService.save(info);
+        return new ResponseEntity<>(infoCreated, HttpStatus.CREATED);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
