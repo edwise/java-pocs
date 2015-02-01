@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 
 public class Info {
 
-    private long id;
+    private Long id;
     private String info;
     private LocalDateTime creationDateTime;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Info setId(long id) {
+    public Info setId(Long id) {
         this.id = id;
         return this;
     }

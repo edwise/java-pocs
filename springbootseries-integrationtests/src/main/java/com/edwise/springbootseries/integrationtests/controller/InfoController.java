@@ -20,7 +20,7 @@ public class InfoController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET, value = "{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Info getInfo(@PathVariable long id) {
+    public Info getInfo(@PathVariable Long id) {
         return infoService.findOne(id);
     }
 
@@ -33,7 +33,7 @@ public class InfoController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public void deleteInfo(@PathVariable long id) {
+    public void deleteInfo(@PathVariable Long id) {
         infoService.delete(id);
     }
 }
