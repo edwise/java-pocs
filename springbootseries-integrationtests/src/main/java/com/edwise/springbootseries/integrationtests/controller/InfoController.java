@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
 public class InfoController {
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(method = RequestMethod.GET, value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Info getInfo(@PathVariable long id) {
         return new Info()
                 .setId(id)
@@ -21,14 +22,15 @@ public class InfoController {
                 .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30));
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Info> createInfo(@RequestBody Info info) {
         return new ResponseEntity<>(info.setId(1234), HttpStatus.CREATED);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public void deleteUser(@PathVariable long id) {
+    public void deleteInfo(@PathVariable long id) {
         // Delete info
     }
 }
