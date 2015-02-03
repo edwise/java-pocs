@@ -5,7 +5,7 @@
 
     <groupId>com.edwise.springbootseries.integrationtests</groupId>
     <artifactId>springbootseries-integrationtests</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>springbootseries-integrationtests</name>
