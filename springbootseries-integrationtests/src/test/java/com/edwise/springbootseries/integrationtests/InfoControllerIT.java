@@ -13,13 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest({"server.port=0"})
 public class InfoControllerIT {
     private static final Long INFO_ID_1234 = 1234l;
-    private static final String INFO_TEST = "Info 1234";
 
     @Autowired
     protected WebApplicationContext webApplicationContext;
@@ -44,25 +40,23 @@ public class InfoControllerIT {
 
     @Test
     public void getInfo_ShouldReturnCorrectInfo() throws Exception {
+        String jsonExpected = "{\"id\":1234,\"info\":\"Info 1234\",\"creationDateTime\":\"2001-12-12T13:40:30\"}";
+
         mockMvc.perform(get("/api/info/{id}", INFO_ID_1234))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").exists())
-                .andExpect(jsonPath("$.id", is(INFO_ID_1234.intValue())))
-                .andExpect(jsonPath("$.info", is(INFO_TEST)))
-                .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
+                .andExpect(content().string(jsonExpected));
     }
 
     @Test
     public void postInfo_ShouldReturnCreatedStatusAndCorrectInfo() throws Exception {
+        String jsonExpected = "{\"id\":1234,\"info\":\"Info 1234 New\",\"creationDateTime\":\"2015-10-25T19:13:21\"}";
+
         mockMvc.perform(post("/api/info/")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"info\":\"Info 1234\",\"creationDateTime\":\"2001-12-12T13:40:30\"}"))
+                .content("{\"info\":\"Info 1234 New\",\"creationDateTime\":\"2015-10-25T19:13:21\"}"))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$").exists())
-                .andExpect(jsonPath("$.id", is(notNullValue())))
-                .andExpect(jsonPath("$.info", is(INFO_TEST)))
-                .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
+                .andExpect(content().string(jsonExpected));
         ;
     }
 
