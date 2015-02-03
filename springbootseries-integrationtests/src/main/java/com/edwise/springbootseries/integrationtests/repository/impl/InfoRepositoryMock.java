@@ -11,7 +11,7 @@ public class InfoRepositoryMock implements InfoRepository {
 
     @Override
     public Info save(Info info) {
-        return info.setId(1234l);
+        return info.setId(1234L);
     }
 
     @Override
