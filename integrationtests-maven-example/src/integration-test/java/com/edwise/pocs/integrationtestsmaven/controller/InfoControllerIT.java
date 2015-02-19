@@ -1,5 +1,6 @@
-package com.edwise.pocs.integrationtestsmaven;
+package com.edwise.pocs.integrationtestsmaven.controller;
 
+import com.edwise.pocs.integrationtestsmaven.Application;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
