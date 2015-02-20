@@ -21,3 +21,5 @@ Proyectos de ejemplo de POCs varios:
 - jooq-example: Como configurar jOOQ en un proyecto maven: https://anotherdayanotherbug.wordpress.com/2015/01/20/como-configurar-jooq-en-un-proyecto-maven/
 
 - springbootseries-integrationtests: Spring Boot series: como configurar tus tests de integración: https://anotherdayanotherbug.wordpress.com/2015/02/04/spring-boot-series-como-configurar-tus-tests-de-integracion/
+
+- integrationtests-maven-example: Cómo configurar tus tests de integración con Maven: https://anotherdayanotherbug.wordpress.com/2015/02/23/como-configurar-tus-tests-de-integracion-con-maven/

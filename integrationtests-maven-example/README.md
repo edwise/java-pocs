@@ -1,0 +1,1 @@
+Proyecto de ejemplo de configuración de tests de integración con maven, creado para el post: https://anotherdayanotherbug.wordpress.com/2015/02/23/como-configurar-tus-tests-de-integracion-con-maven/
