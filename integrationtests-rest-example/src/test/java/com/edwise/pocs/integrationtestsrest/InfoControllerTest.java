@@ -13,9 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
@@ -26,6 +29,9 @@ public class InfoControllerTest {
     private static final Long INFO_ID_1234 = 1234l;
     private static final String INFO_TEST = "Test 1234";
     private static final LocalDateTime INFO_CREATION_DATE_TIME = LocalDateTime.of(2011, 12, 9, 19, 15, 20);
+    private static final Long INFO_ID_3456 = 3456l;
+    private static final String INFO_TEST_2 = "Test 3456";
+    private static final LocalDateTime INFO_CREATION_DATE_TIME_2 = LocalDateTime.of(2015, 7, 10, 15, 45, 15);
 
     @Mock
     private InfoService infoService;
@@ -75,5 +81,30 @@ public class InfoControllerTest {
                 .setCreationDateTime(creationDateTime);
     }
 
-    // TODO tests completos...
+    @Test
+    public void testGetAllInfos() {
+        when(infoService.findAll())
+                .thenReturn(Arrays.asList(
+                                createInfo(INFO_ID_1234, INFO_TEST, INFO_CREATION_DATE_TIME),
+                                createInfo(INFO_ID_3456, INFO_TEST_2, INFO_CREATION_DATE_TIME_2))
+                );
+
+        List<Info> infos = infoController.getAllInfos();
+
+        assertNotNull(infos);
+        assertThat(infos, hasSize(2));
+        verify(infoService).findAll();
+    }
+
+    @Test
+    public void testUpdateInfo() {
+        Info infoToUpdate = createInfo(null, INFO_TEST, INFO_CREATION_DATE_TIME);
+        Info infoUpdated = createInfo(INFO_ID_1234, INFO_TEST, INFO_CREATION_DATE_TIME);
+        when(infoService.update(infoToUpdate)).thenReturn(infoUpdated);
+
+        infoController.updateInfo(INFO_ID_1234, infoToUpdate);
+
+        verify(infoService).update(infoToUpdate);
+    }
+
 }
