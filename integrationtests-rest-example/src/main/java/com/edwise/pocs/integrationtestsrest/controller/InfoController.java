@@ -39,8 +39,7 @@ public class InfoController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(method = RequestMethod.PUT, value = "{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, value = "{id}")
     public void updateInfo(@PathVariable Long id, @RequestBody Info info) {
         infoService.update(info.setId(id));
     }
