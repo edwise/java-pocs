@@ -25,11 +25,6 @@ public class InfoRepositoryMock implements InfoRepository {
     }
 
     @Override
-    public void delete(Long id) {
-        // delete info by id
-    }
-
-    @Override
     public List<Info> findAll() {
         return Arrays.asList(
                 new Info()
@@ -38,12 +33,12 @@ public class InfoRepositoryMock implements InfoRepository {
                         .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30)),
                 new Info()
                         .setId(121L)
-                        .setInfo("Info 1234")
-                        .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30)),
+                        .setInfo("Info 4567")
+                        .setCreationDateTime(LocalDateTime.of(2012, 11, 5, 10, 44, 30)),
                 new Info()
                         .setId(122L)
-                        .setInfo("Info 1234")
-                        .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30))
+                        .setInfo("Info 7892")
+                        .setCreationDateTime(LocalDateTime.of(2013, 12, 10, 13, 33, 12))
         );
     }
 
@@ -53,5 +48,10 @@ public class InfoRepositoryMock implements InfoRepository {
                 .setId(info.getId())
                 .setInfo("Info 1234 Updated")
                 .setCreationDateTime(LocalDateTime.of(2012, 11, 12, 19, 35, 10));
+    }
+
+    @Override
+    public void delete(Long id) {
+        // delete info by id
     }
 }

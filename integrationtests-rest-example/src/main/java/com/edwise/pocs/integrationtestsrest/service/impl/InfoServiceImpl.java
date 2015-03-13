@@ -31,12 +31,12 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public void delete(Long id) {
-        infoRepository.delete(id);
+    public Info update(Info info) {
+        return infoRepository.update(info);
     }
 
     @Override
-    public Info update(Info info) {
-        return infoRepository.update(info);
+    public void delete(Long id) {
+        infoRepository.delete(id);
     }
 }

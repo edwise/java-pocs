@@ -10,9 +10,9 @@ public interface InfoRepository {
 
     Info findOne(Long id);
 
-    void delete(Long id);
-
     List<Info> findAll();
 
     Info update(Info info);
+
+    void delete(Long id);
 }

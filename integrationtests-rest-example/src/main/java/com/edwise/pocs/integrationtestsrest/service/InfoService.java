@@ -12,7 +12,7 @@ public interface InfoService {
 
     List<Info> findAll();
 
-    void delete(Long id);
-
     Info update(Info info);
+
+    void delete(Long id);
 }
