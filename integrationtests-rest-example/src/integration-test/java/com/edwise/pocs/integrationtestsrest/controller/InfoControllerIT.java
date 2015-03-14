@@ -26,6 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebIntegrationTest({"server.port=0"})
 public class InfoControllerIT {
     private static final Long INFO_ID_1234 = 1234l;
+    private static final Long INFO_ID_120 = 120l;
+    private static final Long INFO_ID_121 = 121l;
+    private static final Long INFO_ID_122 = 122l;
     private static final String INFO_TEXT_1234 = "Info 1234";
     private static final String INFO_TEXT_4567 = "Info 4567";
     private static final String INFO_TEXT_7892 = "Info 7892";
@@ -59,13 +62,13 @@ public class InfoControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[0].id", is(120)))
+                .andExpect(jsonPath("$[0].id", is(INFO_ID_120.intValue())))
                 .andExpect(jsonPath("$[0].infoText", is(INFO_TEXT_1234)))
                 .andExpect(jsonPath("$[0].creationDateTime", is(notNullValue())))
-                .andExpect(jsonPath("$[1].id", is(121)))
+                .andExpect(jsonPath("$[1].id", is(INFO_ID_121.intValue())))
                 .andExpect(jsonPath("$[1].infoText", is(INFO_TEXT_4567)))
                 .andExpect(jsonPath("$[1].creationDateTime", is(notNullValue())))
-                .andExpect(jsonPath("$[2].id", is(122)))
+                .andExpect(jsonPath("$[2].id", is(INFO_ID_122.intValue())))
                 .andExpect(jsonPath("$[2].infoText", is(INFO_TEXT_7892)))
                 .andExpect(jsonPath("$[2].creationDateTime", is(notNullValue())));
     }
