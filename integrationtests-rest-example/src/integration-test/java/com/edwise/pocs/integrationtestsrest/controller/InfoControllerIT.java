@@ -16,9 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,7 +39,15 @@ public class InfoControllerIT {
                 .build();
     }
 
-    // TODO tests completos...
+    @Test
+    public void getInfo_InfoFound_ShouldReturnCorrectInfo() throws Exception {
+        mockMvc.perform(get("/api/info/{id}", INFO_ID_1234))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id", is(INFO_ID_1234.intValue())))
+                .andExpect(jsonPath("$.info", is("Info 1234")))
+                .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
+    }
 
     @Test
     public void getAll_InfosFound_ShouldReturnFoundInfos() throws Exception {
@@ -57,30 +63,27 @@ public class InfoControllerIT {
                 .andExpect(jsonPath("$[1].creationDateTime", is(notNullValue())))
                 .andExpect(jsonPath("$[2].id", is(122)))
                 .andExpect(jsonPath("$[2].info", is("Info 7892")))
-                .andExpect(jsonPath("$[2].creationDateTime", is(notNullValue())))
-        ;
+                .andExpect(jsonPath("$[2].creationDateTime", is(notNullValue())));
     }
 
     @Test
-    public void getInfo_InfoFound_ShouldReturnCorrectInfo() throws Exception {
-        mockMvc.perform(get("/api/info/{id}", INFO_ID_1234))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", is(1234)))
-                .andExpect(jsonPath("$.info", is("Info 1234")))
-                .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
-    }
-
-    @Test
-    public void postInfo_ShouldReturnCreatedStatusAndCorrectInfo() throws Exception {
-        String jsonExpected = "{\"id\":1234,\"info\":\"Info 1234 New\",\"creationDateTime\":\"2015-10-25T19:13:21\"}";
-
+    public void postInfo_InfoCorrect_ShouldReturnCreatedStatusAndCorrectInfo() throws Exception {
         mockMvc.perform(post("/api/info/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"info\":\"Info 1234 New\",\"creationDateTime\":\"2015-10-25T19:13:21\"}"))
                 .andExpect(status().isCreated())
-                .andExpect(content().string(jsonExpected));
-        ;
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id", is(1234)))
+                .andExpect(jsonPath("$.info", is("Info 1234 New")))
+                .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
+    }
+
+    @Test
+    public void putInfo_InfoCorrect_ShouldReturnNoContentStatus() throws Exception {
+        mockMvc.perform(put("/api/info/{id}", INFO_ID_1234)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"info\":\"Info 1234 Updated\",\"creationDateTime\":\"2015-10-25T19:13:21\"}"))
+                .andExpect(status().isNoContent());
     }
 
     @Test
