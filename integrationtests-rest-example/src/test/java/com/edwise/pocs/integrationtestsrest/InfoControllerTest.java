@@ -62,7 +62,7 @@ public class InfoControllerTest {
         assertNotNull(response);
         assertNotNull(response.getBody());
         assertThat(response.getStatusCode(), equalTo(HttpStatus.CREATED));
-        assertThat(response.getBody().getInfo(), is(INFO_TEST));
+        assertThat(response.getBody().getInfoText(), is(INFO_TEST));
         assertThat(response.getBody().getCreationDateTime(), is(INFO_CREATION_DATE_TIME));
         verify(infoService).save(infoToSave);
     }
@@ -72,13 +72,6 @@ public class InfoControllerTest {
         infoController.deleteInfo(INFO_ID_1234);
 
         verify(infoService).delete(INFO_ID_1234);
-    }
-
-    private Info createInfo(Long id, String info, LocalDateTime creationDateTime) {
-        return new Info()
-                .setId(id)
-                .setInfo(info)
-                .setCreationDateTime(creationDateTime);
     }
 
     @Test
@@ -105,6 +98,13 @@ public class InfoControllerTest {
         infoController.updateInfo(INFO_ID_1234, infoToUpdate);
 
         verify(infoService).update(infoToUpdate);
+    }
+
+    private Info createInfo(Long id, String info, LocalDateTime creationDateTime) {
+        return new Info()
+                .setId(id)
+                .setInfoText(info)
+                .setCreationDateTime(creationDateTime);
     }
 
 }

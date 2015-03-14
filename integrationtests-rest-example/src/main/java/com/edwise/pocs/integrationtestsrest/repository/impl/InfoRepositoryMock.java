@@ -20,7 +20,7 @@ public class InfoRepositoryMock implements InfoRepository {
     public Info findOne(Long id) {
         return new Info()
                 .setId(id)
-                .setInfo("Info 1234")
+                .setInfoText("Info 1234")
                 .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30));
     }
 
@@ -29,15 +29,15 @@ public class InfoRepositoryMock implements InfoRepository {
         return Arrays.asList(
                 new Info()
                         .setId(120L)
-                        .setInfo("Info 1234")
+                        .setInfoText("Info 1234")
                         .setCreationDateTime(LocalDateTime.of(2001, 12, 12, 13, 40, 30)),
                 new Info()
                         .setId(121L)
-                        .setInfo("Info 4567")
+                        .setInfoText("Info 4567")
                         .setCreationDateTime(LocalDateTime.of(2012, 11, 5, 10, 44, 30)),
                 new Info()
                         .setId(122L)
-                        .setInfo("Info 7892")
+                        .setInfoText("Info 7892")
                         .setCreationDateTime(LocalDateTime.of(2013, 12, 10, 13, 33, 12))
         );
     }
@@ -46,7 +46,7 @@ public class InfoRepositoryMock implements InfoRepository {
     public Info update(Info info) {
         return new Info()
                 .setId(info.getId())
-                .setInfo("Info 1234 Updated")
+                .setInfoText("Info 1234 Updated")
                 .setCreationDateTime(LocalDateTime.of(2012, 11, 12, 19, 35, 10));
     }
 

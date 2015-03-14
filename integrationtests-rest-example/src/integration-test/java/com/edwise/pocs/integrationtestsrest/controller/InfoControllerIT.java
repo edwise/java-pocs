@@ -49,7 +49,7 @@ public class InfoControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(INFO_ID_1234.intValue())))
-                .andExpect(jsonPath("$.info", is(INFO_TEXT_1234)))
+                .andExpect(jsonPath("$.infoText", is(INFO_TEXT_1234)))
                 .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
     }
 
@@ -60,13 +60,13 @@ public class InfoControllerIT {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].id", is(120)))
-                .andExpect(jsonPath("$[0].info", is(INFO_TEXT_1234)))
+                .andExpect(jsonPath("$[0].infoText", is(INFO_TEXT_1234)))
                 .andExpect(jsonPath("$[0].creationDateTime", is(notNullValue())))
                 .andExpect(jsonPath("$[1].id", is(121)))
-                .andExpect(jsonPath("$[1].info", is(INFO_TEXT_4567)))
+                .andExpect(jsonPath("$[1].infoText", is(INFO_TEXT_4567)))
                 .andExpect(jsonPath("$[1].creationDateTime", is(notNullValue())))
                 .andExpect(jsonPath("$[2].id", is(122)))
-                .andExpect(jsonPath("$[2].info", is(INFO_TEXT_7892)))
+                .andExpect(jsonPath("$[2].infoText", is(INFO_TEXT_7892)))
                 .andExpect(jsonPath("$[2].creationDateTime", is(notNullValue())));
     }
 
@@ -74,11 +74,11 @@ public class InfoControllerIT {
     public void postInfo_InfoCorrect_ShouldReturnCreatedStatusAndCorrectInfo() throws Exception {
         mockMvc.perform(post("/api/info/")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"info\":\"Info 1234 New\",\"creationDateTime\":\"2013-10-11T20:10:10\"}"))
+                .content("{\"infoText\":\"Info 1234 New\",\"creationDateTime\":\"2013-10-11T20:10:10\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(INFO_ID_1234.intValue())))
-                .andExpect(jsonPath("$.info", is(INFO_TEXT_1234_NEW)))
+                .andExpect(jsonPath("$.infoText", is(INFO_TEXT_1234_NEW)))
                 .andExpect(jsonPath("$.creationDateTime", is(notNullValue())));
     }
 
@@ -86,7 +86,7 @@ public class InfoControllerIT {
     public void putInfo_InfoCorrect_ShouldReturnNoContentStatus() throws Exception {
         mockMvc.perform(put("/api/info/{id}", INFO_ID_1234)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"info\":\"Info 1234 Updated\",\"creationDateTime\":\"2014-10-25T19:16:21\"}"))
+                .content("{\"infoText\":\"Info 1234 Updated\",\"creationDateTime\":\"2014-10-25T19:16:21\"}"))
                 .andExpect(status().isNoContent());
     }
 

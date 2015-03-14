@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Info {
 
     private Long id;
-    private String info;
+    private String infoText;
     private LocalDateTime creationDateTime;
 
     public Long getId() {
@@ -17,12 +17,12 @@ public class Info {
         return this;
     }
 
-    public String getInfo() {
-        return info;
+    public String getInfoText() {
+        return infoText;
     }
 
-    public Info setInfo(String info) {
-        this.info = info;
+    public Info setInfoText(String infoText) {
+        this.infoText = infoText;
         return this;
     }
 
