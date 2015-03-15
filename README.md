@@ -23,3 +23,5 @@ Proyectos de ejemplo de POCs varios:
 - springbootseries-integrationtests: Spring Boot series: como configurar tus tests de integración: https://anotherdayanotherbug.wordpress.com/2015/02/04/spring-boot-series-como-configurar-tus-tests-de-integracion/
 
 - integrationtests-maven-example: Cómo configurar tus tests de integración con Maven: https://anotherdayanotherbug.wordpress.com/2015/02/23/como-configurar-tus-tests-de-integracion-con-maven/
+
+- integrationtests-rest-example: Tests de integración para un servicio REST, con Spring: https://anotherdayanotherbug.wordpress.com/2015/03/16/tests-de-integracion-para-un-servicio-rest-con-spring/

@@ -1,0 +1,1 @@
+Proyecto de ejemplo de tests de integración de un servicio REST con Spring, creado para el post: https://anotherdayanotherbug.wordpress.com/2015/03/16/tests-de-integracion-para-un-servicio-rest-con-spring/

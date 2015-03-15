@@ -5,7 +5,7 @@
 
     <groupId>com.edwise.pocs.integrationtestsrest</groupId>
     <artifactId>integrationtests-rest-example</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>integrationtests-rest-example</name>
