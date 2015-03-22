@@ -4,20 +4,23 @@ public class PassByValueExample {
 
     public void primitiveExample() {
         int years = 10;
+        System.out.println("Years before method: " + years);
         methodWithPrimitive(years);
-        System.out.println("Final years: " + years);
+        System.out.println("Years after method: " + years);
     }
 
     public void objectExample() {
-        User user = new User("edu");
+        User user = new User("edwise");
+        System.out.println("User before method: " + user);
         methodWithObjectSet(user);
-        System.out.println("Final user: " + user);
+        System.out.println("User after method: " + user);
     }
 
     public void otherObjectExample() {
-        User user2 = new User("edu");
-        methodWithObjectNew(user2);
-        System.out.println("Final user: " + user2);
+        User user = new User("edwise");
+        System.out.println("User before method: " + user);
+        methodWithObjectNew(user);
+        System.out.println("User after method: " + user);
     }
 
     private void methodWithPrimitive(int arg) {
@@ -26,12 +29,12 @@ public class PassByValueExample {
     }
 
     private void methodWithObjectSet(User arg) {
-        arg.setName("mayte");
+        arg.setName("newUser");
         System.out.println("User passed modified: " + arg);
     }
 
     private void methodWithObjectNew(User arg) {
-        arg = new User("mayte");
+        arg = new User("newUser");
         System.out.println("User passed modified: " + arg);
     }
 }
