@@ -25,16 +25,16 @@ public class PassByValueExample {
 
     private void methodWithPrimitive(int arg) {
         arg = arg + 3;
-        System.out.println("Arg passed modified: " + arg);
+        System.out.println("Parameter modified: " + arg);
     }
 
     private void methodWithObjectSet(User arg) {
         arg.setName("newUser");
-        System.out.println("User passed modified: " + arg);
+        System.out.println("Parameter modified: " + arg);
     }
 
     private void methodWithObjectNew(User arg) {
         arg = new User("newUser");
-        System.out.println("User passed modified: " + arg);
+        System.out.println("Parameter modified: " + arg);
     }
 }
