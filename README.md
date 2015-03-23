@@ -25,3 +25,5 @@ Proyectos de ejemplo de POCs varios:
 - integrationtests-maven-example: Cómo configurar tus tests de integración con Maven: https://anotherdayanotherbug.wordpress.com/2015/02/23/como-configurar-tus-tests-de-integracion-con-maven/
 
 - integrationtests-rest-example: Tests de integración para un servicio REST, con Spring: https://anotherdayanotherbug.wordpress.com/2015/03/16/tests-de-integracion-para-un-servicio-rest-con-spring/
+
+- passbyvalue-example: Java: el paso de parámetros es por valor: https://anotherdayanotherbug.wordpress.com/2015/03/25/java-el-paso-de-parametros-es-por-valor/
