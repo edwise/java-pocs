@@ -74,7 +74,7 @@ public class UserControllerTest {
 
     @Test
     public void getAllUsers_withoutUsers_returnEmptyList() {
-        when(userService.findAll()).thenReturn(new ArrayList<User>(0));
+        when(userService.findAll()).thenReturn(new ArrayList<>(0));
 
         List<User> users = userController.getAllUsers();
 

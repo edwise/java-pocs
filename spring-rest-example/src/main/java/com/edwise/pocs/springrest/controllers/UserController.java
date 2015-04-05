@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers() {
         return userService.findAll();
     }
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@PathVariable long userId, @RequestBody User user) {
         User userOld = userService.findById(userId);
         if (userOld != null) {
