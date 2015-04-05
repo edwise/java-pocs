@@ -39,7 +39,6 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response insertUser(User user) {
         userService.save(user);
-
         return Response.status(Response.Status.CREATED).build();
     }
 
@@ -51,7 +50,7 @@ public class UserController {
         User userOld = userService.findById(userId);
         if (userOld != null) {
             userService.update(userOld.copyFrom(user));
-            response = Response.status(Response.Status.CREATED).build();
+            response = Response.status(Response.Status.NO_CONTENT).build();
         } else {
             response = Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -61,7 +60,8 @@ public class UserController {
 
     @DELETE
     @Path("/{id}")
-    public void deleteUser(@PathParam("id") long userId) {
+    public Response deleteUser(@PathParam("id") long userId) {
         userService.delete(userId);
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }

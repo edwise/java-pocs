@@ -126,7 +126,7 @@ public class UserControllerTest {
         verify(userService).findById(USER_ID_12);
         verify(userService).update(userOld.setPhone(PHONE_666222211));
         assertNotNull(response);
-        assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+        assertThat(response.getStatus(), is(Response.Status.NO_CONTENT.getStatusCode()));
     }
 
     @Test
@@ -146,9 +146,11 @@ public class UserControllerTest {
     public void deleteUser() {
         doNothing().when(userService).delete(anyLong());
 
-        userController.deleteUser(USER_ID_12);
+        Response response = userController.deleteUser(USER_ID_12);
 
         verify(userService).delete(USER_ID_12);
+        assertNotNull(response);
+        assertThat(response.getStatus(), is(Response.Status.NO_CONTENT.getStatusCode()));
     }
 
     private User createUser(Long id, String name, Integer type, String phone, String stringDate) {
