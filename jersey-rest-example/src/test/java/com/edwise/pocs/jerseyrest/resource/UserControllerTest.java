@@ -3,13 +3,16 @@ package com.edwise.pocs.jerseyrest.resource;
 import com.edwise.pocs.jerseyrest.entity.User;
 import com.edwise.pocs.jerseyrest.service.UserService;
 import org.joda.time.LocalDate;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +24,14 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
 
     private static final long USER_ID_12 = 12l;
@@ -43,13 +52,11 @@ public class UserControllerTest {
     @Mock
     private UserService userService;
 
+    @Mock
+    private UriInfo uriInfo;
+
     @InjectMocks
     private UserController userController;
-
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void getAllUsers_withUsers_returnSeveralUsers() {
@@ -104,14 +111,21 @@ public class UserControllerTest {
 
     @Test
     public void insertUser() {
-        when(userService.save(any(User.class))).then(returnsFirstArg());
         User user = createUser(null, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        User userSaved = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        UriBuilder uriBuilder = mock(UriBuilder.class);
+        URI uri = URI.create("http://localhost:8080/api/users/" + USER_ID_12);
+        when((uriInfo).getRequestUriBuilder()).thenReturn(uriBuilder);
+        when((uriBuilder).path(anyString())).thenReturn(uriBuilder);
+        when((uriBuilder).build()).thenReturn(uri);
+        when(userService.save(any(User.class))).thenReturn(userSaved);
 
         Response response = userController.insertUser(user);
 
         verify(userService).save(user);
         assertNotNull(response);
         assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+        assertThat(response.getLocation().toString(), is("http://localhost:8080/api/users/" + USER_ID_12));
     }
 
     @Test

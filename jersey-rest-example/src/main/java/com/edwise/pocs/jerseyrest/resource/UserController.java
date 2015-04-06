@@ -5,8 +5,12 @@ import com.edwise.pocs.jerseyrest.service.UserService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.List;
 
 @Path("users")
@@ -14,6 +18,9 @@ public class UserController {
 
     @Inject
     private UserService userService;
+
+    @Context
+    private UriInfo uriInfo;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -38,8 +45,10 @@ public class UserController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response insertUser(User user) {
-        userService.save(user);
-        return Response.status(Response.Status.CREATED).build();
+        User userSaved = userService.save(user);
+        UriBuilder uriBuilder = uriInfo.getRequestUriBuilder();
+        URI uri = uriBuilder.path(userSaved.getId().toString()).build();
+        return Response.created(uri).build();
     }
 
     @PUT
