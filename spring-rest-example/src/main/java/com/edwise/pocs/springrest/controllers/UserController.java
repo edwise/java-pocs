@@ -3,6 +3,7 @@ package com.edwise.pocs.springrest.controllers;
 import com.edwise.pocs.springrest.entities.User;
 import com.edwise.pocs.springrest.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -41,9 +43,17 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void insertUser(@RequestBody User user) {
-        userService.save(user);
+    public ResponseEntity<User> insertUser(@RequestBody User user) {
+        User userSaved = userService.save(user);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(
+                ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(userSaved.getId())
+                        .toUri());
+
+        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)

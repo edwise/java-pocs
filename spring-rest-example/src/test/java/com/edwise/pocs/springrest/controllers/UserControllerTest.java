@@ -5,16 +5,21 @@ import com.edwise.pocs.springrest.services.UserService;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
@@ -29,6 +34,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
 
     private static final long USER_ID_12 = 12l;
@@ -54,7 +60,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
     }
 
     @Test
@@ -112,12 +118,17 @@ public class UserControllerTest {
 
     @Test
     public void insertUser() {
-        when(userService.save(any(User.class))).then(returnsFirstArg());
         User user = createUser(null, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        User userSaved = createUser(USER_ID_12, NAME_GANDALF, TYPE_1, PHONE_661534411, STRING_DATE_19110102);
+        when(userService.save(any(User.class))).thenReturn(userSaved);
 
-        userController.insertUser(user);
+        ResponseEntity<User> response = userController.insertUser(user);
 
         verify(userService).save(user);
+        assertNotNull(response);
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+        assertNull(response.getBody());
+        assertThat(response.getHeaders().getLocation().toString(), endsWith("/" + USER_ID_12));
     }
 
     @Test
