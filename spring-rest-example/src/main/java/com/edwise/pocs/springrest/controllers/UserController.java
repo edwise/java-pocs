@@ -45,15 +45,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<User> insertUser(@RequestBody User user) {
         User userSaved = userService.save(user);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(
-                ServletUriComponentsBuilder
-                        .fromCurrentRequest()
-                        .path("/{id}")
-                        .buildAndExpand(userSaved.getId())
-                        .toUri());
-
-        return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(createHeadersWithLocation(userSaved), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
@@ -69,5 +61,16 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable long userId) {
         userService.delete(userId);
+    }
+
+    private HttpHeaders createHeadersWithLocation(User userSaved) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(
+                ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(userSaved.getId())
+                        .toUri());
+        return httpHeaders;
     }
 }
