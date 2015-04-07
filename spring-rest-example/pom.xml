@@ -4,7 +4,7 @@
 
     <groupId>com.edwise.pocs.springrest</groupId>
     <artifactId>spring-rest-example</artifactId>
-    <version>1.0.2</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>spring-rest-example</name>
