@@ -46,9 +46,7 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response insertUser(User user) {
         User userSaved = userService.save(user);
-        UriBuilder uriBuilder = uriInfo.getRequestUriBuilder();
-        URI uri = uriBuilder.path(userSaved.getId().toString()).build();
-        return Response.created(uri).build();
+        return Response.created(createURIFromResource(userSaved)).build();
     }
 
     @PUT
@@ -72,5 +70,10 @@ public class UserController {
     public Response deleteUser(@PathParam("id") long userId) {
         userService.delete(userId);
         return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    private URI createURIFromResource(User userSaved) {
+        UriBuilder uriBuilder = uriInfo.getRequestUriBuilder();
+        return uriBuilder.path(userSaved.getId().toString()).build();
     }
 }
