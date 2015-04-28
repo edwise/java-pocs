@@ -8,8 +8,8 @@
     <version>0.1</version>
     <packaging>jar</packaging>
 
-    <url>http://maven.apache.org</url>
-
+    <name>spring-rest-client-example</name>
+    <url>http://github.com/edwise/java-pocs</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,13 +27,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.5.3</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
