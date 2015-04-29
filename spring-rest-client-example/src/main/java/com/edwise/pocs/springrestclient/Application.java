@@ -15,6 +15,7 @@ public class Application {
 
         getOneBook(restTemplate);
         getAllBooks(restTemplate);
+        deleteBook(restTemplate);
     }
 
     private static void getOneBook(RestTemplate restTemplate) {
@@ -33,6 +34,12 @@ public class Application {
         System.out.println("GET All StatusCode = " + books.getStatusCode());
         System.out.println("GET All Headers = " + books.getHeaders());
         System.out.println("GET Body (object list): ");
-        Arrays.asList(books.getBody()).forEach(book -> System.out.println("--> " +book));
+        Arrays.asList(books.getBody()).forEach(book -> System.out.println("--> " + book));
+    }
+
+    private static void deleteBook(RestTemplate restTemplate) {
+        restTemplate.delete(URL_API_BOOKS + "/{id}", 12);
+
+        System.out.println();
     }
 }
