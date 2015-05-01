@@ -6,9 +6,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
-public class Application {
+public class AppBookRestApiary {
 
-    private final static String URL_API_BOOKS = "http://private-114e-booksapi.apiary-mock.com/books";
+    private final static String URL_API_BOOKS = "http://private-114e-booksapi.apiary-mock.com/books/";
 
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();
@@ -19,7 +19,7 @@ public class Application {
     }
 
     private static void getOneBook(RestTemplate restTemplate) {
-        ResponseEntity<Book> book = restTemplate.getForEntity(URL_API_BOOKS + "/{id}", Book.class, 12);
+        ResponseEntity<Book> book = restTemplate.getForEntity(URL_API_BOOKS + "{id}", Book.class, 12);
 
         System.out.println();
         System.out.println("GET StatusCode = " + book.getStatusCode());
