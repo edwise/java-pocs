@@ -40,23 +40,35 @@ public class AppBookRestApiary {
     }
 
     private static void postOneBook(RestTemplate restTemplate) {
-        // TODO
+        Book bookToInsert = createBook(null, "New book title");
+        ResponseEntity<Book> response = restTemplate.postForEntity(URL_API_BOOKS, bookToInsert, Book.class);
 
         System.out.println();
         System.out.println("POST executed");
+        System.out.println("POST StatusCode = " + response.getStatusCode());
+        System.out.println("POST Header location = " + response.getHeaders().getLocation());
     }
 
     private static void putOneBook(RestTemplate restTemplate) {
-        // TODO
+        Book bookToUpdate = createBook(123L, "Book title updated");
+        restTemplate.put(URL_API_BOOKS + "{id}", bookToUpdate, 123L);
 
         System.out.println();
         System.out.println("PUT executed");
     }
 
     private static void deleteBook(RestTemplate restTemplate) {
-        restTemplate.delete(URL_API_BOOKS + "/{id}", 12);
+        restTemplate.delete(URL_API_BOOKS + "{id}", 12);
 
         System.out.println();
         System.out.println("DELETE executed");
+    }
+
+    private static Book createBook(Long id, String title) {
+        Book book = new Book();
+        book.setId(id);
+        book.setTitle(title);
+
+        return book;
     }
 }

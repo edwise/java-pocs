@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class AppInfoRestLocal {
@@ -43,8 +44,8 @@ public class AppInfoRestLocal {
     }
 
     private static void postOneInfo(RestTemplate restTemplate) {
-        // TODO
-        ResponseEntity<Info> response = restTemplate.postForEntity(URL_API_INFO, new Info(), Info.class);
+        Info infoToInsert = createInfo(null, "UNew info text", LocalDateTime.of(2015, 5, 15, 21, 25, 30));
+        ResponseEntity<Info> response = restTemplate.postForEntity(URL_API_INFO, infoToInsert, Info.class);
 
         System.out.println();
         System.out.println("POST executed");
@@ -54,16 +55,26 @@ public class AppInfoRestLocal {
     }
 
     private static void putOneInfo(RestTemplate restTemplate) {
-        // TODO
+        Info infoToUpdate = createInfo(123L, "Updated text", LocalDateTime.of(2015, 5, 11, 22, 35, 35));
+        restTemplate.put(URL_API_INFO + "{id}", infoToUpdate, 123L);
 
         System.out.println();
         System.out.println("PUT executed");
     }
 
     private static void deleteInfo(RestTemplate restTemplate) {
-        restTemplate.delete(URL_API_INFO + "/{id}", 12);
+        restTemplate.delete(URL_API_INFO + "{id}", 12);
 
         System.out.println();
         System.out.println("DELETE executed");
+    }
+
+    private static Info createInfo(Long id, String infoText, LocalDateTime dateTime) {
+        Info info = new Info();
+        info.setId(id);
+        info.setInfoText(infoText);
+        info.setCreationDateTime(dateTime);
+
+        return info;
     }
 }
