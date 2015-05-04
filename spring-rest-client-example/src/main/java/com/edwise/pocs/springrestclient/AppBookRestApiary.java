@@ -21,7 +21,7 @@ public class AppBookRestApiary {
     }
 
     private static void getOneBook(RestTemplate restTemplate) {
-        ResponseEntity<Book> response = restTemplate.getForEntity(URL_API_BOOKS + "{id}", Book.class, 12);
+        ResponseEntity<Book> response = restTemplate.getForEntity(URL_API_BOOKS + "{id}", Book.class, 12L);
 
         System.out.println();
         System.out.println("GET StatusCode = " + response.getStatusCode());
@@ -58,7 +58,7 @@ public class AppBookRestApiary {
     }
 
     private static void deleteBook(RestTemplate restTemplate) {
-        restTemplate.delete(URL_API_BOOKS + "{id}", 12);
+        restTemplate.delete(URL_API_BOOKS + "{id}", 12L);
 
         System.out.println();
         System.out.println("DELETE executed");
