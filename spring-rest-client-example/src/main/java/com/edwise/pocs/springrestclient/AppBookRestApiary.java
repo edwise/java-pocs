@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class AppBookRestApiary {
 
-    private final static String URL_API_BOOKS = "http://private-114e-booksapi.apiary-mock.com/books/";
+    private static final String URL_API_BOOKS = "http://private-114e-booksapi.apiary-mock.com/books/";
 
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();

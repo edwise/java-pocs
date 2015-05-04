@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class AppInfoRestLocal {
 
-    private final static String URL_API_INFO = "http://localhost:8080//api/info/";
+    private static final String URL_API_INFO = "http://localhost:8080//api/info/";
 
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();
