@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 public class AppBookRestApiary {
 
-    private static final String URL_API_BOOKS = "http://private-114e-booksapi.apiary-mock.com/books/";
+    private static final String URL_API_BOOKS =
+            "http://private-114e-booksapi.apiary-mock.com/books/";
 
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();
@@ -21,7 +22,8 @@ public class AppBookRestApiary {
     }
 
     private static void getOneBook(RestTemplate restTemplate) {
-        ResponseEntity<Book> response = restTemplate.getForEntity(URL_API_BOOKS + "{id}", Book.class, 12L);
+        ResponseEntity<Book> response =
+                restTemplate.getForEntity(URL_API_BOOKS + "{id}", Book.class, 12L);
 
         System.out.println();
         System.out.println("GET StatusCode = " + response.getStatusCode());
@@ -30,18 +32,21 @@ public class AppBookRestApiary {
     }
 
     private static void getAllBooks(RestTemplate restTemplate) {
-        ResponseEntity<Book[]> response = restTemplate.getForEntity(URL_API_BOOKS, Book[].class);
+        ResponseEntity<Book[]> response =
+                restTemplate.getForEntity(URL_API_BOOKS, Book[].class);
 
         System.out.println();
         System.out.println("GET All StatusCode = " + response.getStatusCode());
         System.out.println("GET All Headers = " + response.getHeaders());
         System.out.println("GET Body (object list): ");
-        Arrays.asList(response.getBody()).forEach(book -> System.out.println("--> " + book));
+        Arrays.asList(response.getBody())
+                .forEach(book -> System.out.println("--> " + book));
     }
 
     private static void postOneBook(RestTemplate restTemplate) {
         Book bookToInsert = createBook(null, "New book title");
-        ResponseEntity<Book> response = restTemplate.postForEntity(URL_API_BOOKS, bookToInsert, Book.class);
+        ResponseEntity<Book> response =
+                restTemplate.postForEntity(URL_API_BOOKS, bookToInsert, Book.class);
 
         System.out.println();
         System.out.println("POST executed");
