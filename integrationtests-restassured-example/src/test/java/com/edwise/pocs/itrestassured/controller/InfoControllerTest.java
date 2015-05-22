@@ -2,6 +2,7 @@ package com.edwise.pocs.itrestassured.controller;
 
 import com.edwise.pocs.itrestassured.entity.Info;
 import com.edwise.pocs.itrestassured.service.InfoService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,16 +10,21 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -37,6 +43,12 @@ public class InfoControllerTest {
 
     @InjectMocks
     private InfoController infoController = new InfoController();
+
+    @Before
+    public void setUp() {
+        RequestContextHolder.setRequestAttributes(
+                new ServletRequestAttributes(new MockHttpServletRequest()));
+    }
 
     @Test
     public void testGetInfo() {
@@ -59,10 +71,9 @@ public class InfoControllerTest {
         ResponseEntity<Info> response = infoController.createInfo(infoToSave);
 
         assertNotNull(response);
-        assertNotNull(response.getBody());
         assertThat(response.getStatusCode(), equalTo(HttpStatus.CREATED));
-        assertThat(response.getBody().getInfoText(), is(INFO_TEST));
-        assertThat(response.getBody().getCreationDateTime(), is(INFO_CREATION_DATE_TIME));
+        assertNull(response.getBody());
+        assertThat(response.getHeaders().getLocation().toString(), endsWith("/" + INFO_ID_1234));
         verify(infoService).save(infoToSave);
     }
 

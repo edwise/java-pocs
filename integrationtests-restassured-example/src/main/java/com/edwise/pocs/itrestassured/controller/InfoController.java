@@ -3,6 +3,7 @@ package com.edwise.pocs.itrestassured.controller;
 import com.edwise.pocs.itrestassured.entity.Info;
 import com.edwise.pocs.itrestassured.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -40,8 +42,7 @@ public class InfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Info> createInfo(@RequestBody Info info) {
         Info infoCreated = infoService.save(info);
-        // TODO change to follow good practices for post result...
-        return new ResponseEntity<>(infoCreated, HttpStatus.CREATED);
+        return new ResponseEntity<>(createHeadersWithLocation(infoCreated), HttpStatus.CREATED);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,4 +57,14 @@ public class InfoController {
         infoService.delete(id);
     }
 
+    private HttpHeaders createHeadersWithLocation(Info info) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(
+                ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(info.getId())
+                        .toUri());
+        return httpHeaders;
+    }
 }
