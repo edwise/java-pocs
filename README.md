@@ -29,3 +29,6 @@ Proyectos de ejemplo de POCs varios:
 - passbyvalue-example: Java: el paso de parámetros es por valor: https://anotherdayanotherbug.wordpress.com/2015/03/25/java-el-paso-de-parametros-es-por-valor/
 
 - spring-rest-client-example: Implementar un cliente REST con Spring: RestTemplate: https://anotherdayanotherbug.wordpress.com/2015/05/05/implementar-un-cliente-rest-con-spring-resttemplate/
+
+- integrationtests-restassured-example: Tests de integración usando REST-assured: https://anotherdayanotherbug.wordpress.com/2015/05/25/tests-de-integracion-usando-rest-assured/
+
