@@ -1,15 +1,28 @@
 package com.edwise.pocs.orikapoc.config;
 
+import com.edwise.pocs.orikapoc.dto.DestinationDTO;
+import com.edwise.pocs.orikapoc.entity.SourceEntity;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.converter.ConverterFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 public class OrikaConfig {
 
-    private static final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+    private static final MapperFactory mapperFactory;
 
-    private OrikaConfig() {
-        // TODO orika mappings...
+    static {
+        mapperFactory = new DefaultMapperFactory.Builder().build();
+        ConverterFactory converterFactory = mapperFactory.getConverterFactory();
+        converterFactory.registerConverter(new LocalDateTimeToLocalDateConverter());
+        mapperFactory.classMap(SourceEntity.class, DestinationDTO.class)
+                .exclude("id")
+                .field("userSurname", "surname")
+                .field("entityType.id", "type")
+                .field("creationDateTime", "creationDate")
+                .field("nums[0]", "firstNum")
+                .byDefault()
+                .register();
     }
 
     public static MapperFacade getMapperFacade() {
