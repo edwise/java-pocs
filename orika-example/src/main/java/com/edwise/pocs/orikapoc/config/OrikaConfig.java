@@ -13,8 +13,10 @@ public class OrikaConfig {
 
     static {
         mapperFactory = new DefaultMapperFactory.Builder().build();
+
         ConverterFactory converterFactory = mapperFactory.getConverterFactory();
         converterFactory.registerConverter(new LocalDateTimeToLocalDateConverter());
+
         mapperFactory.classMap(SourceEntity.class, DestinationDTO.class)
                 .exclude("id")
                 .field("userSurname", "surname")

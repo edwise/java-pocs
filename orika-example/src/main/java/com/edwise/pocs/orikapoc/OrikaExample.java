@@ -24,6 +24,7 @@ public class OrikaExample {
                 .setNums(new Integer[]{14, 25, 67});
 
         DestinationDTO destDTO = mapper.map(sourceEntity, DestinationDTO.class);
+
         System.out.println("Source: " + sourceEntity);
         System.out.println("Destination: " + destDTO);
     }
