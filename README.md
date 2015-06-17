@@ -32,3 +32,7 @@ Proyectos de ejemplo de POCs varios:
 
 - integrationtests-restassured-example: Tests de integración usando REST-assured: https://anotherdayanotherbug.wordpress.com/2015/05/25/tests-de-integracion-usando-rest-assured/
 
+- orika-example: Como mapear beans con Orika: https://anotherdayanotherbug.wordpress.com/2015/06/18/como-mapear-beans-con-orika/
+
+
+
