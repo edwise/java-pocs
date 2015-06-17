@@ -7,7 +7,7 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.converter.ConverterFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
-public class OrikaConfig {
+public final class OrikaConfig {
 
     private static final MapperFactory mapperFactory;
 
@@ -25,6 +25,9 @@ public class OrikaConfig {
                 .field("nums[0]", "firstNum")
                 .byDefault()
                 .register();
+    }
+
+    private OrikaConfig() {
     }
 
     public static MapperFacade getMapperFacade() {
