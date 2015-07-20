@@ -1,0 +1,1 @@
+Proyecto de ejemplo para modificar el banner de Spring Boot en el arranque, creado para el post: https://anotherdayanotherbug.wordpress.com/2015/07/20/spring-boot-series-como-cambiar-el-banner-de-arranque/

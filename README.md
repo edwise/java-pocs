@@ -34,5 +34,7 @@ Proyectos de ejemplo de POCs varios:
 
 - orika-example: Como mapear beans con Orika: https://anotherdayanotherbug.wordpress.com/2015/06/17/como-mapear-beans-con-orika/
 
+- springbootseries-banner: Spring Boot series: cómo cambiar el banner de arranque: https://anotherdayanotherbug.wordpress.com/2015/07/20/spring-boot-series-como-cambiar-el-banner-de-arranque/
+
 
 
