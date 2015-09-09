@@ -28,7 +28,6 @@
             <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>2.6.1</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>

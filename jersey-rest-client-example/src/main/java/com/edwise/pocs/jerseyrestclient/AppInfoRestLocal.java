@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class AppInfoRestLocal {
 
 
-    private static final String URL_API = "http://localhost:8080/api/";
+    private static final String URL_BASE_API = "http://localhost:8080/api/";
     private static final String INFO_RESOURCE = "info/";
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class AppInfoRestLocal {
         mapper.registerModule(new JavaTimeModule());
         Client client = ClientBuilder.newClient(
                 new ClientConfig().register(new JacksonJsonProvider(mapper)));
-        WebTarget webTarget = client.target(URL_API).path(INFO_RESOURCE);
+        WebTarget webTarget = client.target(URL_BASE_API).path(INFO_RESOURCE);
 
         getOneInfo(webTarget);
         getAllInfos(webTarget);
@@ -36,17 +36,22 @@ public class AppInfoRestLocal {
     }
 
     private static void getOneInfo(WebTarget webTarget) {
-        Response response = webTarget.path("12").request(MediaType.APPLICATION_JSON_TYPE).get();
+        Response response = webTarget.path("12")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .get();
 
         System.out.println();
         System.out.println("GET one executed");
         System.out.println("GET StatusCode = " + response.getStatus());
         System.out.println("GET Headers = " + response.getHeaders());
-        System.out.println("GET Body (object): " + response.readEntity(Info.class));
+        System.out.println("GET Body (object): "
+                + response.readEntity(Info.class));
     }
 
     private static void getAllInfos(WebTarget webTarget) {
-        Response response = webTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
+        Response response = webTarget
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .get();
 
         System.out.println();
         System.out.println("GET All StatusCode = " + response.getStatus());
@@ -57,19 +62,24 @@ public class AppInfoRestLocal {
     }
 
     private static void postOneInfo(WebTarget webTarget) {
-        Info infoToInsert = createInfo(null, "New text", LocalDateTime.of(2015, 5, 15, 21, 25, 30));
-        Response response = webTarget.request()
+        Info infoToInsert =
+                createInfo(null, "New text", LocalDateTime.of(2015, 5, 15, 21, 25, 30));
+        Response response = webTarget
+                .request()
                 .post(Entity.entity(infoToInsert, MediaType.APPLICATION_JSON_TYPE));
 
         System.out.println();
         System.out.println("POST executed");
         System.out.println("POST StatusCode = " + response.getStatus());
-        System.out.println("POST Body (object): " + response.readEntity(Info.class));
+        System.out.println("POST Body (object): "
+                + response.readEntity(Info.class));
     }
 
     private static void putOneInfo(WebTarget webTarget) {
-        Info infoToUpdate = createInfo(123L, "Info updated", LocalDateTime.of(2015, 5, 11, 22, 35, 35));
-        Response response = webTarget.path("123").request()
+        Info infoToUpdate =
+                createInfo(123L, "Info updated", LocalDateTime.of(2015, 5, 11, 22, 35, 35));
+        Response response = webTarget.path("123")
+                .request()
                 .put(Entity.entity(infoToUpdate, MediaType.APPLICATION_JSON_TYPE));
 
         System.out.println();
@@ -78,7 +88,9 @@ public class AppInfoRestLocal {
     }
 
     private static void deleteInfo(WebTarget webTarget) {
-        Response response = webTarget.path("122").request().delete();
+        Response response = webTarget.path("122")
+                .request()
+                .delete();
 
         System.out.println();
         System.out.println("DELETE StatusCode = " + response.getStatus());
