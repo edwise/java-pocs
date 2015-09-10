@@ -1,1 +1,1 @@
-Proyecto de ejemplo de cliente REST con Spring, RestTemplate, creado para el post: : https://anotherdayanotherbug.wordpress.com/2015/05/05/implementar-un-cliente-rest-con-spring-resttemplate/
+Proyecto de ejemplo de cliente REST con Spring, RestTemplate, creado para el post: https://anotherdayanotherbug.wordpress.com/2015/05/05/implementar-un-cliente-rest-con-spring-resttemplate/
