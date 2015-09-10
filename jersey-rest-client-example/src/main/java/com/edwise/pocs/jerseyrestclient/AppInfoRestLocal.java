@@ -17,7 +17,6 @@ import java.util.Arrays;
 
 public class AppInfoRestLocal {
 
-
     private static final String URL_BASE_API = "http://localhost:8080/api/";
     private static final String INFO_RESOURCE = "info/";
 
