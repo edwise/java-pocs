@@ -36,5 +36,7 @@ Proyectos de ejemplo de POCs varios:
 
 - springbootseries-banner: Spring Boot series: cómo cambiar el banner de arranque: https://anotherdayanotherbug.wordpress.com/2015/07/20/spring-boot-series-como-cambiar-el-banner-de-arranque/
 
+- jersey-rest-client-example: Implementar un cliente REST con JAX-RS (Jersey): https://anotherdayanotherbug.wordpress.com/2015/09/11/implementar-un-cliente-rest-con-jax-rs-jersey/
+
 
 

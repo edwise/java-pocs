@@ -1,1 +1,1 @@
-TODO
+Proyecto de ejemplo de cliente REST con JAX-RS (Jersey) creado para el post: https://anotherdayanotherbug.wordpress.com/2015/09/11/implementar-un-cliente-rest-con-jax-rs-jersey/
