@@ -22,7 +22,7 @@ public class BarTest {
     @Test
     public void testMyMethodWithMockitoSpy() {
         bar = spy(new Bar());
-        doReturn("OK").when(bar).doSomethingWithDatabase();
+        doReturn("OK Foo mocked").when(bar).doSomethingWithDatabase();
 //        when(Foo.doSomethingWithDatabase()).thenReturn("OK");
 
         int result = bar.myMethod();

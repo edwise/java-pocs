@@ -13,6 +13,6 @@ public class Foo {
         }
         System.out.println("Finished connection whit DB.");
 
-        return "OK";
+        return "OK real Foo";
     }
 }

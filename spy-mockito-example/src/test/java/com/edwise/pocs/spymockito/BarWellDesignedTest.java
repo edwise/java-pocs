@@ -14,7 +14,7 @@ public class BarWellDesignedTest {
     public void testMyMethodWithoutMockito() {
         Foo foo = mock(Foo.class);
         barWellDesigned = new BarWellDesigned(foo);
-        when(foo.doSomethingWithDatabase()).thenReturn("OK");
+        when(foo.doSomethingWithDatabase()).thenReturn("OK Foo mocked");
 
         int result = barWellDesigned.myMethod();
 
