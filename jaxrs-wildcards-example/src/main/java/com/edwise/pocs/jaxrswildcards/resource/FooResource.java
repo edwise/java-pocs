@@ -16,9 +16,30 @@ public class FooResource {
     }
 
     @GET
+    @Path("{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getFooById(@PathParam("id") String id) {
+        return "Foo with id: " + id;
+    }
+
+    @GET
+    @Path("wildcards/{firstname}-{surname}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getFooWithNameAndSurname(@PathParam("firstname") String firstname, @PathParam("surname") String surname) {
+        return firstname + " " + surname;
+    }
+
+    @GET
+    @Path("wildcards/{id : \\d+}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getFooWithIntegerId(@PathParam("id") int id) {
+        return Integer.toString(id);
+    }
+
+    @GET
     @Path("wildcard/{subpath : .+}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getWithWildcard(@PathParam("subpath") String subpath) {
+    public String getFooWithWildcard(@PathParam("subpath") String subpath) {
         return subpath;
     }
 }
