@@ -23,14 +23,14 @@ public class FooResource {
     }
 
     @GET
-    @Path("wildcards/{firstname}-{surname}")
+    @Path("twoparams/{firstname}-{surname}")
     @Produces(MediaType.TEXT_PLAIN)
     public String getFooWithNameAndSurname(@PathParam("firstname") String firstname, @PathParam("surname") String surname) {
         return firstname + " " + surname;
     }
 
     @GET
-    @Path("wildcards/{id : \\d+}")
+    @Path("onlyinteger/{id : \\d+}")
     @Produces(MediaType.TEXT_PLAIN)
     public String getFooWithIntegerId(@PathParam("id") int id) {
         return Integer.toString(id);
