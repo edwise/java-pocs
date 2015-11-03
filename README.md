@@ -39,3 +39,7 @@ Proyectos de ejemplo de POCs varios:
 - jersey-rest-client-example: Implementar un cliente REST con JAX-RS (Jersey): https://anotherdayanotherbug.wordpress.com/2015/09/11/implementar-un-cliente-rest-con-jax-rs-jersey/
 
 - spy-mockito-example: Unit Testing - Como mockear un método de una clase padre: https://anotherdayanotherbug.wordpress.com/2015/10/13/unit-testing-como-mockear-un-metodo-de-una-clase-padre/
+
+- jaxrs-wildcards-example: Expresiones regulares y ‘wildcards’ en servicios REST con JAX-RS: https://anotherdayanotherbug.wordpress.com/2015/11/04/expresiones-regulares-y-wildcards-en-servicios-rest-con-jax-rs/
+
+

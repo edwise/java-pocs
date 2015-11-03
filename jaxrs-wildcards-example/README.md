@@ -1,0 +1,1 @@
+Proyecto de ejemplo de wildcards en jaxrs, creado para el post: https://anotherdayanotherbug.wordpress.com/2015/11/04/expresiones-regulares-y-wildcards-en-servicios-rest-con-jax-rs/
