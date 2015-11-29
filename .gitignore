@@ -2,5 +2,6 @@
 *.iml
 .classpath
 .project
+.settings
 target
 out
