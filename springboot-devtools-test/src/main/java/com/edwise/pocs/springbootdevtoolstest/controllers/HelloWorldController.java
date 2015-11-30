@@ -11,6 +11,6 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String getHelloWorld() {
-        return "Hello World changed!";
+        return "Hello World!";
     }
 }
