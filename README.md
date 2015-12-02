@@ -42,4 +42,6 @@ Proyectos de ejemplo de POCs varios:
 
 - jaxrs-wildcards-example: Expresiones regulares y ‘wildcards’ en servicios REST con JAX-RS: https://anotherdayanotherbug.wordpress.com/2015/11/04/expresiones-regulares-y-wildcards-en-servicios-rest-con-jax-rs/
 
+- springboot-devtools-test: Spring Boot series: developer tools: https://anotherdayanotherbug.wordpress.com/2015/12/02/spring-boot-series-developer-tools/
+
 
