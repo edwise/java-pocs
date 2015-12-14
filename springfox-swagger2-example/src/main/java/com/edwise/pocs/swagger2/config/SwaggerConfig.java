@@ -8,6 +8,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
@@ -19,6 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("api-infos")
                 .apiInfo(apiInfo())
+                .directModelSubstitute(LocalDateTime.class, Date.class)
                 .select()
                 .paths(regex("/api.*"))
                 .build();
