@@ -1,1 +1,1 @@
-Proyecto de ejemplo de documentar un servicio REST Spring con Swagger 2, usando la librería SpringFox: https://anotherdayanotherbug.wordpress.com/2015/12/21/TODO/
+Proyecto de ejemplo de documentar un servicio REST Spring con Swagger 2, usando la librería SpringFox: https://anotherdayanotherbug.wordpress.com/2015/12/21/documentar-un-servicio-rest-con-swagger-2-springfox/

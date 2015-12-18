@@ -44,4 +44,6 @@ Proyectos de ejemplo de POCs varios:
 
 - springboot-devtools-test: Spring Boot series: developer tools: https://anotherdayanotherbug.wordpress.com/2015/12/02/spring-boot-series-developer-tools/
 
+- springfox-swagger2-example: Documentar un servicio REST, con Swagger 2 (SpringFox): https://anotherdayanotherbug.wordpress.com/2015/12/21/documentar-un-servicio-rest-con-swagger-2-springfox/
+
 
