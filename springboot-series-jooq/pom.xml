@@ -26,12 +26,16 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-jooq</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -51,6 +55,73 @@
                     <target>${java.version}</target>
                     <testSource>${java.version}</testSource>
                     <testTarget>${java.version}</testTarget>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>org.h2.Driver</driver>
+                    <url>jdbc:h2:~/springbootseriesjooqDB</url>
+                    <srcFiles>
+                        <srcFile>${basedir}/src/main/resources/delete.sql</srcFile>
+                        <srcFile>${basedir}/src/main/resources/schema.sql</srcFile>
+                        <srcFile>${basedir}/src/main/resources/data.sql</srcFile>
+                    </srcFiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <jdbc>
+                        <driver>org.h2.Driver</driver>
+                        <url>jdbc:h2:~/springbootseriesjooqDB</url>
+                    </jdbc>
+                    <generator>
+                        <name>org.jooq.util.DefaultGenerator</name>
+                        <database>
+                            <name>org.jooq.util.h2.H2Database</name>
+                            <includes>.*</includes>
+                            <excludes/>
+                            <inputSchema>PUBLIC</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>sample.jooq.domain</packageName>
+                            <directory>${basedir}/generated-code/main/java</directory>
+                        </target>
+                    </generator>
                 </configuration>
             </plugin>
         </plugins>
