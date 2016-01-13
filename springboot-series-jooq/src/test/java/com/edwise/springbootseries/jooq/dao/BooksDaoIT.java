@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
 public class BooksDaoIT {
-    private static final Logger log = LoggerFactory.getLogger(BooksDaoIT.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BooksDaoIT.class);
 
     private static final int EXISTING_CHAR_ID = 4;
     private static final int NOT_EXISTING_CHAR_ID = 13;
@@ -28,12 +28,12 @@ public class BooksDaoIT {
     private BooksDao booksDao;
 
     @Test
-    public void testSelectAll() {
+    public void getAllBookCharactersShouldReturnAllTheChars() {
         Result<Record> allBookCharacters = booksDao.getAllBookCharacters();
 
         allBookCharacters.stream()
                 .map(record -> record.getValue(Tables.BOOK_CHARACTER.NAME))
-                .forEach(name -> log.info("Char: {}", name));
+                .forEach(name -> LOG.info("Char: {}", name));
 
         assertThat(allBookCharacters)
                 .extracting(record -> record.getValue(Tables.BOOK_CHARACTER.NAME))
@@ -41,7 +41,7 @@ public class BooksDaoIT {
     }
 
     @Test
-    public void testAllBookCharactersByName() {
+    public void getAllBookCharactersOrderByNameShouldReturnCharsSorted() {
         Result<Record> allBookCharactersByName = booksDao.getAllBookCharactersOrderByName();
 
         assertThat(allBookCharactersByName)
@@ -57,7 +57,7 @@ public class BooksDaoIT {
                 bookCharacter
                         .orElseThrow(() -> new AssertionError("Not existing character"))
                         .getValue(Tables.BOOK_CHARACTER.NAME))
-                .isEqualToIgnoringCase("Samwise");
+                .isEqualTo("Samwise");
     }
 
     @Test

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public class BooksDao {
-    private static final Logger log = LoggerFactory.getLogger(BooksDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BooksDao.class);
 
     private final DSLContext create;
 
@@ -28,7 +28,7 @@ public class BooksDao {
                 .from(Tables.BOOK_CHARACTER)
                 .fetch();
 
-        log.info("Resultado query getAllBookCharacters: \n{}", result);
+        LOG.info("Resultado query getAllBookCharacters: \n{}", result);
         return result;
     }
 
@@ -39,7 +39,7 @@ public class BooksDao {
                 .orderBy(Tables.BOOK_CHARACTER.NAME)
                 .fetch();
 
-        log.info("Resultado query getAllBookCharactersOrderByName: \n{}", result);
+        LOG.info("Resultado query getAllBookCharactersOrderByName: \n{}", result);
         return result;
     }
 
@@ -51,7 +51,7 @@ public class BooksDao {
                 .orderBy(Tables.BOOK_CHARACTER.NAME)
                 .fetchOptional();
 
-        log.info("Resultado query getBookCharacterById: \n{}",
+        LOG.info("Resultado query getBookCharacterById: \n{}",
                 result);
         return result;
     }
