@@ -1,1 +1,1 @@
-DROP ALL OBJECTS;
+drop all OBJECTS;
