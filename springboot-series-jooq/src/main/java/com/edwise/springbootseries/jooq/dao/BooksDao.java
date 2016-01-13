@@ -15,15 +15,11 @@ import java.util.Optional;
 public class BooksDao {
     private static final Logger log = LoggerFactory.getLogger(BooksDao.class);
 
-    private DSLContext create;
+    private final DSLContext create;
 
     @Autowired
     public BooksDao(DSLContext dslContext) {
         this.create = dslContext;
-    }
-
-    public boolean testDslContext() {
-        return create != null;
     }
 
     public Result<Record> getAllBookCharacters() {

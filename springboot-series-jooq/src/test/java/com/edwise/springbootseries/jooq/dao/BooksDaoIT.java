@@ -21,14 +21,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BooksDaoIT {
     private static final Logger log = LoggerFactory.getLogger(BooksDaoIT.class);
 
+    private static final int EXISTING_CHAR_ID = 4;
+    private static final int NOT_EXISTING_CHAR_ID = 13;
+
     @Autowired
     private BooksDao booksDao;
-
-    @Test
-    public void testApplication() {
-        assertThat(booksDao).isNotNull();
-        assertThat(booksDao.testDslContext()).isTrue();
-    }
 
     @Test
     public void testSelectAll() {
@@ -54,7 +51,7 @@ public class BooksDaoIT {
 
     @Test
     public void getBookByIdThatExistsShouldReturnValidRecord() {
-        Optional<Record> bookCharacter = booksDao.getBookCharacterById(4);
+        Optional<Record> bookCharacter = booksDao.getBookCharacterById(EXISTING_CHAR_ID);
 
         assertThat(
                 bookCharacter
@@ -65,7 +62,7 @@ public class BooksDaoIT {
 
     @Test
     public void getBookByIdThatNotExistsShouldReturnEmptyOptionalRecord() {
-        Optional<Record> bookCharacter = booksDao.getBookCharacterById(13);
+        Optional<Record> bookCharacter = booksDao.getBookCharacterById(NOT_EXISTING_CHAR_ID);
 
         assertThat(bookCharacter.isPresent()).isFalse();
     }
