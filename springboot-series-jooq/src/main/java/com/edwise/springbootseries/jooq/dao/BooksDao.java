@@ -51,8 +51,7 @@ public class BooksDao {
                 .orderBy(Tables.BOOK_CHARACTER.NAME)
                 .fetchOptional();
 
-        LOG.info("Resultado query getBookCharacterById: \n{}",
-                result);
+        LOG.info("Resultado query getBookCharacterById: \n{}", result);
         return result;
     }
 }

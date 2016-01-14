@@ -5,7 +5,7 @@
 
     <groupId>com.edwise.springbootseries.jooq</groupId>
     <artifactId>springboot-series-jooq</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>springboot-series-jooq</name>

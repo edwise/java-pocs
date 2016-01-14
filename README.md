@@ -46,4 +46,4 @@ Proyectos de ejemplo de POCs varios:
 
 - springfox-swagger2-example: Documentar un servicio REST, con Swagger 2 (SpringFox): https://anotherdayanotherbug.wordpress.com/2015/12/21/documentar-un-servicio-rest-con-swagger-2-springfox/
 
-
+- springboot-series-jooq: Spring Boot series: autoconfiguración con jOOQ: https://anotherdayanotherbug.wordpress.com/2016/01/15/spring-boot-series-autoconfiguracion-con-jooq/
