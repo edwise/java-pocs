@@ -3,13 +3,22 @@ package com.edwise.pocs.futurepoc;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.rmi.runtime.Log;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class FuturesTest {
+    private final static Logger LOG = LoggerFactory.getLogger(FuturesTest.class);
+
     private static ExecutorService executor;
 
     @BeforeClass
@@ -23,7 +32,13 @@ public class FuturesTest {
     }
 
     @Test
-    public void testApplication() {
-        fail("Not yet implemented");
+    public void testFuture() throws InterruptedException, ExecutionException {
+        LOG.info("Lanzamos el futuro...");
+        SomeBigProcess someBigProcess = new SomeBigProcess(executor);
+
+        Future<String> future = someBigProcess.processVeryLong("test");
+        LOG.info("Futuro lanzado.");
+
+        assertEquals("test result", future.get());
     }
 }
