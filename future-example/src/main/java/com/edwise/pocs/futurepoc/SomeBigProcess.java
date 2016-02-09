@@ -24,4 +24,13 @@ public class SomeBigProcess {
             return param.concat(" result");
         });
     }
+
+    public Future<String> processVeryLongThatThrowsException(String parama) throws InterruptedException {
+        return executor.submit(() -> {
+            LOG.info("Comenzando processVeryLongThatThrowsException...");
+            TimeUnit.SECONDS.sleep(5);
+            LOG.info("Terminando processVeryLongThatThrowsException...");
+            throw new RuntimeException("Error!");
+        });
+    }
 }

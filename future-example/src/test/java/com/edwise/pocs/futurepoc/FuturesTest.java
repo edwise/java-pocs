@@ -5,7 +5,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.rmi.runtime.Log;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -13,8 +12,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class FuturesTest {
     private final static Logger LOG = LoggerFactory.getLogger(FuturesTest.class);
@@ -40,5 +37,16 @@ public class FuturesTest {
         LOG.info("Futuro lanzado.");
 
         assertEquals("test result", future.get());
+    }
+
+    @Test(expected = ExecutionException.class)
+    public void testFutureWithException() throws InterruptedException, ExecutionException {
+        SomeBigProcess someBigProcess = new SomeBigProcess(executor);
+
+        LOG.info("Lanzamos el futuro...");
+        Future<String> future = someBigProcess.processVeryLongThatThrowsException("test");
+        LOG.info("Futuro lanzado.");
+
+        future.get();
     }
 }
