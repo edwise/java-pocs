@@ -16,14 +16,12 @@ public class SomeBigProcess {
         this.executor = executor;
     }
 
-    public Future<String> processVeryLong(String param1) throws InterruptedException {
+    public Future<String> processVeryLong(String param) throws InterruptedException {
         return executor.submit(() -> {
-            LOG.info("Entramos en el futuro");
-            TimeUnit.SECONDS.sleep(3);
-            LOG.info("Dandolo todo...");
+            LOG.info("Comenzando processVeryLong...");
             TimeUnit.SECONDS.sleep(5);
             LOG.info("Terminando processVeryLong...");
-            return param1.concat(" result");
+            return param.concat(" result");
         });
     }
 }

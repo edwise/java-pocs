@@ -33,9 +33,9 @@ public class FuturesTest {
 
     @Test
     public void testFuture() throws InterruptedException, ExecutionException {
-        LOG.info("Lanzamos el futuro...");
         SomeBigProcess someBigProcess = new SomeBigProcess(executor);
 
+        LOG.info("Lanzamos el futuro...");
         Future<String> future = someBigProcess.processVeryLong("test");
         LOG.info("Futuro lanzado.");
 
