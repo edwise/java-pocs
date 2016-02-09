@@ -1,0 +1,1 @@
+Proyecto de ejemplo de uso de la interfaz Future: https://anotherdayanotherbug.wordpress.com/2016/02/10/futuros-en-java-parte-2-interfaz-future/
