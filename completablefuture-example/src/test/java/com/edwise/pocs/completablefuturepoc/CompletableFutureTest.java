@@ -23,8 +23,9 @@ public class CompletableFutureTest {
 
     @AfterClass
     public static void shutDown() throws InterruptedException {
+        Sleep.sleepSeconds(5);
         executor.shutdown();
-        executor.awaitTermination(10, TimeUnit.SECONDS);
+        executor.awaitTermination(5, TimeUnit.SECONDS);
     }
 
     @Test
@@ -68,7 +69,8 @@ public class CompletableFutureTest {
             return "Terminado";
         }, executor);
 
-        futureAsync.whenCompleteAsync((s, e) -> LOGGER.info("Resultado supplyAsync: " + s), executor);
+        futureAsync.whenCompleteAsync((s, e) -> LOGGER.info("Resultado supplyAsync: " + s),
+                executor);
         LOGGER.info("Terminado main thread");
     }
 
