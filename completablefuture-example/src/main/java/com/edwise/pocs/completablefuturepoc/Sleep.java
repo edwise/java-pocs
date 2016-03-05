@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class Sleep {
-    private final static Logger LOGGER = LoggerFactory.getLogger(Sleep.class);
+public final class Sleep {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sleep.class);
+
+    private Sleep() {
+    }
 
     public static void sleepSeconds(int seconds) {
         try {
