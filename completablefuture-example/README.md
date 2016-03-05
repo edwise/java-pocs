@@ -1,0 +1,1 @@
+Proyecto de ejemplo de uso de la clase CompletableFuture: https://anotherdayanotherbug.wordpress.com/2016/03/07/futuros-en-java-parte-3-completablefuture/

@@ -49,3 +49,5 @@ Proyectos de ejemplo de POCs varios:
 - springboot-series-jooq: Spring Boot series: autoconfiguración con jOOQ: https://anotherdayanotherbug.wordpress.com/2016/01/15/spring-boot-series-autoconfiguracion-con-jooq/
 
 - future-example: Futuros en Java, Parte 2: Interfaz Future: https://anotherdayanotherbug.wordpress.com/2016/02/10/futuros-en-java-parte-2-interfaz-future/
+
+- completablefuture-example: Futuros en Java, Parte 3: CompletableFuture, introducción: https://anotherdayanotherbug.wordpress.com/2016/03/07/futuros-en-java-parte-3-completablefuture/
