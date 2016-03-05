@@ -24,7 +24,7 @@ public class CompletableFutureTest {
     @AfterClass
     public static void shutDown() throws InterruptedException {
         executor.shutdown();
-        System.out.println("Executor response: " + executor.awaitTermination(5, TimeUnit.SECONDS));
+        executor.awaitTermination(10, TimeUnit.SECONDS);
     }
 
     @Test
