@@ -1,7 +1,7 @@
 package com.edwise.pocs.completablefuturepoc;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,15 +14,15 @@ import java.util.concurrent.TimeUnit;
 public class CompletableFutureTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(CompletableFutureTest.class);
 
-    private static ExecutorService executor;
+    private ExecutorService executor;
 
-    @BeforeClass
-    public static void setUp() {
+    @Before
+    public void setUp() {
         executor = Executors.newFixedThreadPool(5);
     }
 
-    @AfterClass
-    public static void shutDown() throws InterruptedException {
+    @After
+    public void shutDown() throws InterruptedException {
         Sleep.sleepSeconds(5);
         executor.shutdown();
         executor.awaitTermination(5, TimeUnit.SECONDS);
