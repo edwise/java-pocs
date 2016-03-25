@@ -51,3 +51,4 @@ Proyectos de ejemplo de POCs varios:
 - future-example: Futuros en Java, Parte 2: Interfaz Future: https://anotherdayanotherbug.wordpress.com/2016/02/10/futuros-en-java-parte-2-interfaz-future/
 
 - completablefuture-example: Futuros en Java, Parte 3: CompletableFuture, introducción: https://anotherdayanotherbug.wordpress.com/2016/03/07/futuros-en-java-parte-3-completablefuture/
+ y Futuros en Java, Parte 4: CompletableFuture, uso avanzado: https://anotherdayanotherbug.wordpress.com/2016/03/29/futuros-en-java-parte-4-completablefuture-uso-avanzado/
