@@ -37,7 +37,9 @@ public class PredicateMethodsTest {
                               .filter(bChar -> bChar.getAge() < 90 && Weapon.SWORD.equals(bChar.getMainWeapon()))
                               .collect(Collectors.toList());
 
-        youngsAndSwords.forEach(System.out::println);
+        assertThat(youngsAndSwords).extracting("name")
+                                   .contains("Aragorn", "Boromir", "Sam")
+                                   .doesNotContain("Gandalf", "Gimli", "Legolas", "Frodo");
     }
 
     @Test
@@ -48,7 +50,9 @@ public class PredicateMethodsTest {
                               .filter(bChar -> Weapon.SWORD.equals(bChar.getMainWeapon()))
                               .collect(Collectors.toList());
 
-        youngsAndSwords.forEach(System.out::println);
+        assertThat(youngsAndSwords).extracting("name")
+                                   .contains("Aragorn", "Boromir", "Sam")
+                                   .doesNotContain("Gandalf", "Gimli", "Legolas", "Frodo");
     }
 
     @Test
@@ -58,17 +62,21 @@ public class PredicateMethodsTest {
                               .filter(isYoung().and(useSword()))
                               .collect(Collectors.toList());
 
-        youngsAndSwords.forEach(System.out::println);
+        assertThat(youngsAndSwords).extracting("name")
+                                   .contains("Aragorn", "Boromir", "Sam")
+                                   .doesNotContain("Gandalf", "Gimli", "Legolas", "Frodo");
     }
 
     @Test
-    public void testPredicateDefinedInMethodsIsHumanOrUseSword() {
-        List<BookCharacter> humanOrSwords =
+    public void testPredicateDefinedInMethodsIsNotHumanOrUseSword() {
+        List<BookCharacter> notHumanOrSwords =
                 bookCharacters.stream()
-                              .filter(isHuman().or(useSword()))
+                              .filter(isHuman().negate().or(useSword()))
                               .collect(Collectors.toList());
 
-        humanOrSwords.forEach(System.out::println);
+        assertThat(notHumanOrSwords).extracting("name")
+                                    .contains("Gandalf", "Aragorn", "Gimli", "Legolas", "Boromir", "Frodo", "Sam")
+                                    .doesNotContain("Nothing...");
     }
 
     @Test
@@ -78,14 +86,18 @@ public class PredicateMethodsTest {
                               .filter(useSword().negate())
                               .collect(Collectors.toList());
 
-        notUseSword.forEach(System.out::println);
+        assertThat(notUseSword).extracting("name")
+                               .contains("Gandalf", "Gimli", "Legolas", "Frodo")
+                               .doesNotContain("Aragorn", "Boromir", "Sam");
     }
 
     @Test
     public void testPredicateAsParameterYoungAndUseSword() {
         BookCharacterChecker bookCharacterChecker = new BookCharacterChecker();
+        BookCharacter gandalf = new BookCharacter("Gandalf", Integer.MAX_VALUE, Weapon.STAFF, false);
 
-        boolean result = bookCharacterChecker.checkThisAndValid(bookCharacters.get(0), bChar -> bChar.getAge() > 90);
+        boolean result =
+                bookCharacterChecker.checkThisAndValid(gandalf, bChar -> bChar.getAge() > 90);
 
         assertThat(result).isTrue();
     }
