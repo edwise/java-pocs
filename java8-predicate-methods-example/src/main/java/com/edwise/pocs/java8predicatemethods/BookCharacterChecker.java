@@ -6,11 +6,7 @@ import java.util.function.Predicate;
 
 public class BookCharacterChecker {
 
-    public BookCharacterChecker() {
-    }
-
     public boolean checkThisAndValid(BookCharacter bChar, Predicate<BookCharacter> predicate) {
         return predicate.and(BookCharacterPredicate.isValid()).test(bChar);
     }
-
 }

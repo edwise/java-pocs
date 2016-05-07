@@ -3,10 +3,10 @@ package com.edwise.pocs.java8predicatemethods.model;
 import java.util.Objects;
 
 public class BookCharacter {
-    private String name;
-    private Integer age;
-    private Weapon mainWeapon;
-    private boolean human;
+    private final String name;
+    private final Integer age;
+    private final Weapon mainWeapon;
+    private final boolean human;
 
     public BookCharacter(String name, Integer age, Weapon mainWeapon, boolean human) {
         this.name = name;

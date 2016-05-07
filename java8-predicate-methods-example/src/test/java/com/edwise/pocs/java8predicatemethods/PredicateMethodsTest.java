@@ -93,8 +93,8 @@ public class PredicateMethodsTest {
 
     @Test
     public void testPredicateAsParameterYoungAndUseSword() {
-        BookCharacterChecker bookCharacterChecker = new BookCharacterChecker();
         BookCharacter gandalf = new BookCharacter("Gandalf", Integer.MAX_VALUE, Weapon.STAFF, false);
+        BookCharacterChecker bookCharacterChecker = new BookCharacterChecker();
 
         boolean result =
                 bookCharacterChecker.checkThisAndValid(gandalf, bChar -> bChar.getAge() > 90);
