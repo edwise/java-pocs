@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class BookCharacterPredicate {
     public static Predicate<BookCharacter> isYoung() {
-        return bChar -> bChar.getAge() < 70;
+        return bChar -> bChar.getAge() < 90;
     }
 
     public static Predicate<BookCharacter> useSword() {
@@ -15,5 +15,11 @@ public class BookCharacterPredicate {
 
     public static Predicate<BookCharacter> isHuman() {
         return BookCharacter::isHuman;
+    }
+
+    public static Predicate<BookCharacter> isValid() {
+        return bChar -> bChar.getName() != null &&
+                bChar.getAge() > 0 &&
+                bChar.getMainWeapon() != null;
     }
 }

@@ -1,5 +1,7 @@
 package com.edwise.pocs.java8predicatemethods.model;
 
+import java.util.Objects;
+
 public class BookCharacter {
     private String name;
     private Integer age;
@@ -29,12 +31,25 @@ public class BookCharacter {
         return human;
     }
 
-    public enum Weapon {SWORD, AXE, BOW, STAFF}
+    public enum Weapon {SWORD, AXE, BOW, STAFF, RING}
 
     @Override
     public String toString() {
         return "BookCharacter{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookCharacter that = (BookCharacter) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
