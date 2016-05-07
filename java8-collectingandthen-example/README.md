@@ -1,0 +1,1 @@
+- Proyecto de ejemplo de uso del método collectingAndThen en Streams: https://anotherdayanotherbug.wordpress.com/2016/04/19/java-8-tips-collectingandthen-en-streams/
