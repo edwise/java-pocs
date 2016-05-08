@@ -54,3 +54,5 @@ Proyectos de ejemplo de POCs varios:
  y Futuros en Java, Parte 4: CompletableFuture, uso avanzado: https://anotherdayanotherbug.wordpress.com/2016/03/29/futuros-en-java-parte-4-completablefuture-uso-avanzado/
 
 - java8-collectingandthen-example: Java 8 tips: collectingAndThen en Streams: https://anotherdayanotherbug.wordpress.com/2016/04/19/java-8-tips-collectingandthen-en-streams/
+
+- java8-predicate-methods-example: Java 8 tips: métodos default en la interfaz funcional Predicate: https://anotherdayanotherbug.wordpress.com/2016/05/10/java-8-tips-metodos-default-en-la-interfaz-funcional-predicate/

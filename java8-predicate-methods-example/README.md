@@ -1,0 +1,1 @@
+- Proyecto de ejemplo de uso de los métodos defaults de la interfaz Predicate: https://anotherdayanotherbug.wordpress.com/2016/05/10/java-8-tips-metodos-default-en-la-interfaz-funcional-predicate/
