@@ -56,7 +56,7 @@ public class PredicateMethodsTest {
     }
 
     @Test
-    public void testPredicateDefinedInMethodsYoungAndUseSword() {
+    public void testPredicateDefinedInClassYoungAndUseSword() {
         List<BookCharacter> youngsAndSwords =
                 bookCharacters.stream()
                               .filter(isYoung().and(useSword()))
@@ -68,7 +68,7 @@ public class PredicateMethodsTest {
     }
 
     @Test
-    public void testPredicateDefinedInMethodsIsNotHumanOrUseSword() {
+    public void testPredicateDefinedInClassIsNotHumanOrUseSword() {
         List<BookCharacter> notHumanOrSwords =
                 bookCharacters.stream()
                               .filter(isHuman().negate().or(useSword()))
@@ -80,7 +80,7 @@ public class PredicateMethodsTest {
     }
 
     @Test
-    public void testPredicateDefinedInMethodsNotUseSword() {
+    public void testPredicateDefinedInClassNotUseSword() {
         List<BookCharacter> notUseSword =
                 bookCharacters.stream()
                               .filter(useSword().negate())
@@ -96,22 +96,19 @@ public class PredicateMethodsTest {
         BookCharacter gandalf = new BookCharacter("Gandalf", Integer.MAX_VALUE, Weapon.STAFF, false);
         BookCharacterChecker bookCharacterChecker = new BookCharacterChecker();
 
-        boolean result =
-                bookCharacterChecker.checkThisAndValid(gandalf, bChar -> bChar.getAge() > 90);
-
-        assertThat(result).isTrue();
+        bookCharacterChecker.doSomeStuffIfThisAndValid(gandalf, bChar -> bChar.getAge() > 90);
     }
-
 
     @Test
     public void testPredicateEqualMethod() {
         BookCharacter aragorn = new BookCharacter("Aragorn", 88, Weapon.SWORD, true);
         Predicate<BookCharacter> equalToAragorn = Predicate.isEqual(aragorn);
 
-        List<BookCharacter> result = bookCharacters.stream()
-                                                   .filter(equalToAragorn.negate())
-                                                   .collect(Collectors.toList());
+        List<BookCharacter> allExceptAragorn = bookCharacters.stream()
+                                                             .filter(equalToAragorn.negate())
+                                                             .collect(Collectors.toList());
 
-        assertThat(result).doesNotContain(aragorn).hasSize(6);
+        assertThat(allExceptAragorn).doesNotContain(aragorn)
+                                    .hasSize(6);
     }
 }
