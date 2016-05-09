@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 
 public class BookCharacterChecker {
 
-    public void doSomeStuffIfThisAndValid(BookCharacter bChar, Predicate<BookCharacter> predicate) {
+    public void doSomeStuffIfThisAndValid(BookCharacter bChar,
+                                          Predicate<BookCharacter> predicate) {
         if (predicate.and(BookCharacterPredicate.isValid()).test(bChar)) {
             // do some stuff
             System.out.println("doing stuff with result true");

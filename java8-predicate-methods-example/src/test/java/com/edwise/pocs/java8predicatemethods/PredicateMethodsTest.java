@@ -93,7 +93,8 @@ public class PredicateMethodsTest {
 
     @Test
     public void testPredicateAsParameterYoungAndUseSword() {
-        BookCharacter gandalf = new BookCharacter("Gandalf", Integer.MAX_VALUE, Weapon.STAFF, false);
+        BookCharacter gandalf =
+                new BookCharacter("Gandalf", Integer.MAX_VALUE, Weapon.STAFF, false);
         BookCharacterChecker bookCharacterChecker = new BookCharacterChecker();
 
         bookCharacterChecker.doSomeStuffIfThisAndValid(gandalf, bChar -> bChar.getAge() > 90);
@@ -104,9 +105,10 @@ public class PredicateMethodsTest {
         BookCharacter aragorn = new BookCharacter("Aragorn", 88, Weapon.SWORD, true);
         Predicate<BookCharacter> equalToAragorn = Predicate.isEqual(aragorn);
 
-        List<BookCharacter> allExceptAragorn = bookCharacters.stream()
-                                                             .filter(equalToAragorn.negate())
-                                                             .collect(Collectors.toList());
+        List<BookCharacter> allExceptAragorn =
+                bookCharacters.stream()
+                              .filter(equalToAragorn.negate())
+                              .collect(Collectors.toList());
 
         assertThat(allExceptAragorn).doesNotContain(aragorn)
                                     .hasSize(6);
