@@ -1,8 +1,17 @@
 package com.edwise.pocs.dropwizard;
 
-public class DropwizardApplication {
+import com.edwise.pocs.dropwizard.config.DropwizardConfig;
+import io.dropwizard.Application;
+import io.dropwizard.setup.Environment;
 
-    public static void main(String[] args) {
-        // TODO implement
+public class DropwizardApplication extends Application<DropwizardConfig> {
+
+    public static void main(String[] args) throws Exception {
+        new DropwizardApplication().run(args);
+    }
+
+    @Override
+    public void run(DropwizardConfig dropwizardConfig, Environment environment) {
+
     }
 }
