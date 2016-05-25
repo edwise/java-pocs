@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 public class MessageResource {
 
     @GET
-    public Message sayHello(@QueryParam("name") String name) {
+    public Message getHelloWorldMessage(@QueryParam("name") String name) {
         return new Message(String.format("Hello world %s!", name != null ? name : "Nobody"));
     }
 }
