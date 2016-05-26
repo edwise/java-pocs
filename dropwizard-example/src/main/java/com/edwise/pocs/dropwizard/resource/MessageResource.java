@@ -11,9 +11,11 @@ import javax.ws.rs.core.MediaType;
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
+    private static final String HELLO_WORLD_SENTENCE = "Hello world %s!";
+    private static final String DEFAULT_NAME = "Nobody";
 
     @GET
     public Message getHelloWorldMessage(@QueryParam("name") String name) {
-        return new Message(String.format("Hello world %s!", name != null ? name : "Nobody"));
+        return new Message(String.format(HELLO_WORLD_SENTENCE, name != null ? name : DEFAULT_NAME));
     }
 }
