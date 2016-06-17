@@ -58,3 +58,5 @@ Proyectos de ejemplo de POCs varios:
 - java8-predicate-methods-example: Java 8 tips: métodos default en la interfaz funcional Predicate: https://anotherdayanotherbug.wordpress.com/2016/05/10/java-8-tips-metodos-default-en-la-interfaz-funcional-predicate/
 
 - dropwizard-example: POC con Dropwizard: http://anotherdayanotherbug.wordpress.com/2016/05/31/poc-con-dropwizard/
+
+- java8-function-methods-example: Java 8 tips: métodos default en la interfaz funcional Function: http://anotherdayanotherbug.wordpress.com/2016/06/21/java-8-tips-metodos-default-en-la-interfaz-funcional-function/
