@@ -5,7 +5,10 @@ import com.edwise.pocs.java8functionmethods.model.BookCharacter;
 import java.util.List;
 import java.util.function.Function;
 
-public class BookCharacterFunction {
+public final class BookCharacterFunction {
+
+    private BookCharacterFunction() {
+    }
 
     public static Function<List<BookCharacter>, BookCharacter> findFirstSwordsman() {
         return list ->
