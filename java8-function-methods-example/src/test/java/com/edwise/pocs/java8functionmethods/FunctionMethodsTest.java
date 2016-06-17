@@ -55,7 +55,8 @@ public class FunctionMethodsTest {
     public void testWithNoFunctionIdentityMethod() {
         Map<String, BookCharacter> characterMap =
                 bookCharacters.stream()
-                              .collect(Collectors.toMap(BookCharacter::getName, bookChar -> bookChar));
+                              .collect(Collectors.toMap(BookCharacter::getName,
+                                      bookChar -> bookChar));
 
         assertThatMapContainsListCharacters(characterMap);
     }
@@ -64,7 +65,8 @@ public class FunctionMethodsTest {
     public void testWithFunctionIdentityMethod() {
         Map<String, BookCharacter> characterMap =
                 bookCharacters.stream()
-                              .collect(Collectors.toMap(BookCharacter::getName, Function.identity()));
+                              .collect(Collectors.toMap(BookCharacter::getName,
+                                      Function.identity()));
 
         assertThatMapContainsListCharacters(characterMap);
     }

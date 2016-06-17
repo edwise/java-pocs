@@ -5,6 +5,8 @@ import com.edwise.pocs.java8functionmethods.model.BookCharacter;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.edwise.pocs.java8functionmethods.model.BookCharacter.Weapon;
+
 public final class BookCharacterFunction {
 
     private BookCharacterFunction() {
@@ -13,9 +15,9 @@ public final class BookCharacterFunction {
     public static Function<List<BookCharacter>, BookCharacter> findFirstSwordsman() {
         return list ->
                 list.stream()
-                    .filter(bookChar -> BookCharacter.Weapon.SWORD.equals(bookChar.getMainWeapon()))
+                    .filter(bookChar -> Weapon.SWORD.equals(bookChar.getMainWeapon()))
                     .findFirst()
-                    .orElse(new BookCharacter("NOBODY", 0, BookCharacter.Weapon.SWORD, true));
+                    .orElse(new BookCharacter("NOBODY", 0, Weapon.SWORD, true));
     }
 
     public static Function<BookCharacter, String> characterToCode() {
