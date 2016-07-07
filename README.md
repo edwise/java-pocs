@@ -60,3 +60,5 @@ Proyectos de ejemplo de POCs varios:
 - dropwizard-example: POC con Dropwizard: http://anotherdayanotherbug.wordpress.com/2016/05/31/poc-con-dropwizard/
 
 - java8-function-methods-example: Java 8 tips: métodos default en la interfaz funcional Function: http://anotherdayanotherbug.wordpress.com/2016/06/21/java-8-tips-metodos-default-en-la-interfaz-funcional-function/
+
+- dropwizard-series-configuration-class: Dropwizard series: clase Configuration: http://anotherdayanotherbug.wordpress.com/2016/07/12/dropwizard-series-clase-configuration/
