@@ -13,6 +13,7 @@ public class DropwizardApplication extends Application<DropwizardConfig> {
 
     @Override
     public void run(DropwizardConfig dropwizardConfig, Environment environment) {
-        environment.jersey().register(new MessageResource());
+        environment.jersey()
+                   .register(new MessageResource(dropwizardConfig.getHost(), dropwizardConfig.getDefaultName()));
     }
 }

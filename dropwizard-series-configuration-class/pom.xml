@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>dropwizard-series-configuration-class</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/edwise/java-pocs</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,7 +80,8 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.edwise.pocs.dropwizard.DropwizardApplication</mainClass>
+                                    <mainClass>com.edwise.pocs.dropwizardseries.configurationclass.DropwizardApplication
+                                    </mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
